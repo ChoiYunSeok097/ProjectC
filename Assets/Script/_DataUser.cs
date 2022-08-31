@@ -34,8 +34,8 @@ public class _DataUser : MonoBehaviour
         {
             str.Add(one.transform.name);
         }
-        
-        SaveParty(str);
+
+        //SaveParty(str);
         LoadParty();
     }
 
