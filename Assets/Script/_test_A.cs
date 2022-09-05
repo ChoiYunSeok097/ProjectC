@@ -6,9 +6,7 @@ public class _test_A : _test_Character
 {
     private void Awake() 
     {
-        CharName = "A";
-        MaxHelth = 10;
-        Attack = 5;
+        Debug.Log("사실 잘 모름");
 
     }
 
