@@ -26,7 +26,7 @@ public class _InGame_SkillCoolTime : MonoBehaviour
                 leftTime = 0;                               // 남은 시간을 0으로 초기화
                 if(button)                                  // 버튼이 존재 할 시
                     button.enabled = true;                  // 버튼 기능 활성화
-                isClicked = true;                           // 
+                isClicked = false;                           // 
             }
         
             float ratio = 1.0f - (leftTime / coolTime);     // ratio 변수에 저장, 1.0f이 다 채워진 상태를 의미, 1.0f에서 쿨타임과 남은 시간을 나눈 비율을 뺌
