@@ -11,7 +11,7 @@ public class _InGame_SkillCoolTime : MonoBehaviour
     public float coolTime = 10.0f;      //쿨타임 시간
     public bool isClicked = false;      //버튼이 클릭 되었는가
     float leftTime = 10.0f;             //남은 시간
-    float speed = 5.0f;                 //채우는 시간
+    float speed = 5.0f;                 //채우는 속도
 
     // Update is called once per frame
     void Update () 
