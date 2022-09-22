@@ -8343,8 +8343,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f132cbc529dc3234ba66213e6521300f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  image: {fileID: 0}
-  button: {fileID: 0}
+  image: {fileID: 689714688}
+  button: {fileID: 689714687}
   coolTime: 10
   isClicked: 0
 --- !u!1 &691792197
