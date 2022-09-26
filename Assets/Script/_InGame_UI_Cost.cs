@@ -12,11 +12,6 @@ public class _InGame_UI_Cost : MonoBehaviour
     public float speed;    // �ϴ� ��ųcost ���������� �ӵ���
     public float skillCost; // �ϴ� ��ųcost ���������� ��ġ
     public Image SkillCost_Front; //�پ��� �������� �̹����� �����ͼ� fillAmount�� Ȱ�� ����
-
-    
-
-
-
   
     // Start is called before the first frame update
     void Awake() 
