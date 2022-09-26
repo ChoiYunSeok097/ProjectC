@@ -5,13 +5,21 @@ using UnityEngine.UI;
 
 public class _InGame_SkillCoolTime : MonoBehaviour
 {
-    
+    public _InGame_UI_Cost SkillCost;
+
     public Image image;                 //스킬 이미지
     public Button button;               //스킬 버튼
     public float coolTime = 10.0f;      //쿨타임 시간
     public bool isClicked = false;      //버튼이 클릭 되었는가
     float leftTime = 10.0f;             //남은 시간
     float speed = 5.0f;                 //채우는 속도
+
+    float skillCost = 3.0f;
+
+    void Awake() 
+    {
+        
+    }
 
     // Update is called once per frame
     void Update () 
@@ -35,12 +43,16 @@ public class _InGame_SkillCoolTime : MonoBehaviour
             }
     }
 
+    // Button event
     public void StartCoolTime() 
     {
-        leftTime = coolTime;                                        // 남은 시간을 쿨타임시간으로 초기화
-        isClicked = true;                                           // 클릭되었음을 변수에 저장
-        
-        if(button)                                                  // 버튼이 존재 할 시
-            button.enabled = false;                                 // 버튼 기능을 해지함.
+        if(SkillCost.discountSkillCost(skillCost))
+        {
+            leftTime = coolTime;                                        // 남은 시간을 쿨타임시간으로 초기화
+            isClicked = true;                                           // 클릭되었음을 변수에 저장
+            
+            if(button)                                                  // 버튼이 존재 할 시
+                button.enabled = false;                                 // 버튼 기능을 해지함.
+        }
     }
 }

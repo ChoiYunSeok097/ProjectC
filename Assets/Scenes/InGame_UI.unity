@@ -2015,6 +2015,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f132cbc529dc3234ba66213e6521300f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  SkillCost: {fileID: 1249619595}
   image: {fileID: 127187558}
   button: {fileID: 127187557}
   coolTime: 10
@@ -8418,6 +8419,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f132cbc529dc3234ba66213e6521300f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  SkillCost: {fileID: 1249619595}
   image: {fileID: 689714688}
   button: {fileID: 689714687}
   coolTime: 10
@@ -15980,6 +15982,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f132cbc529dc3234ba66213e6521300f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  SkillCost: {fileID: 1249619595}
   image: {fileID: 1323581177}
   button: {fileID: 1323581176}
   coolTime: 10

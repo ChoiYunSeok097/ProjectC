@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class _InGame_UI_Test : MonoBehaviour
+public class _InGame_UI_Cost : MonoBehaviour
 {
     int button01;
     int button02;
@@ -13,16 +13,16 @@ public class _InGame_UI_Test : MonoBehaviour
     public float skillCost; // �ϴ� ��ųcost ���������� ��ġ
     public Image SkillCost_Front; //�پ��� �������� �̹����� �����ͼ� fillAmount�� Ȱ�� ����
 
+    
 
 
 
   
     // Start is called before the first frame update
-    void Start()
+    void Awake() 
     {
         skillCost = 0;
-        speed = 3.0f;
-       
+        speed = 3.0f; 
     }
 
     // Update is called once per frame
