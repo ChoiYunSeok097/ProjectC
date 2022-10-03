@@ -15,6 +15,9 @@ public class _InGame_SkillCoolTime : MonoBehaviour
     float speed = 5.0f;                 //채우는 속도
 
     float skillCost = 3.0f;
+    public bool psuseBtn = false;  //pause
+    public GameObject pauseBg;
+       
 
     void Awake() 
     {
@@ -53,6 +56,22 @@ public class _InGame_SkillCoolTime : MonoBehaviour
             
             if(button)                                                  // 버튼이 존재 할 시
                 button.enabled = false;                                 // 버튼 기능을 해지함.
+        }
+    }
+
+    public void PauseBtn()
+    {
+        if(psuseBtn)
+        {
+            Time.timeScale = 1;
+            psuseBtn = false;
+            pauseBg.gameObject.SetActive(false);
+        }
+        else 
+        {
+            Time.timeScale = 0;
+            psuseBtn = true;
+            pauseBg.gameObject.SetActive(true);
         }
     }
 }
