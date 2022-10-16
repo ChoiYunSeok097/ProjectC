@@ -13,11 +13,9 @@ public class _InGame_SkillCoolTime : MonoBehaviour
     public bool isClicked = false;      //버튼이 클릭 되었는가
     float leftTime = 10.0f;             //남은 시간
     float speed = 5.0f;                 //채우는 속도
-
     float skillCost = 3.0f;
-    public bool psuseBtn = false;  //pause
+    public bool pauseBtn = false;  //pause
     public GameObject pauseBg;
-       
 
     void Awake() 
     {
@@ -61,17 +59,18 @@ public class _InGame_SkillCoolTime : MonoBehaviour
 
     public void PauseBtn()
     {
-        if(psuseBtn)
+        if(pauseBtn)
         {
             Time.timeScale = 1;
-            psuseBtn = false;
+            pauseBtn = false;
             pauseBg.gameObject.SetActive(false);
         }
         else 
         {
             Time.timeScale = 0;
-            psuseBtn = true;
+            pauseBtn = true;
             pauseBg.gameObject.SetActive(true);
         }
     }
+
 }
