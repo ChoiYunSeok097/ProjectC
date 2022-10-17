@@ -39,7 +39,7 @@ public class _DataUser : MonoBehaviour
         LoadParty();
     }
 
-    //편성 정보 저장
+    //save pary infomation
     void SaveParty(List<string> party)
     {
         string path = Application.dataPath+"/Party.csv";
@@ -54,7 +54,7 @@ public class _DataUser : MonoBehaviour
         
     }
 
-    //편성 정보 불러오기
+    //load pary infomation
     List<string> LoadParty()
     {
         string path = Application.dataPath+"/Party.csv";
