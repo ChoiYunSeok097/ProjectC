@@ -10,6 +10,8 @@ public class MobAttackMotion : StateMachineBehaviour
         float time = animator.gameObject.GetComponent<EnemyManager>().time;
         time -= 2f;
         animator.gameObject.GetComponent<EnemyManager>().time = time;
+        float Attack = animator.gameObject.GetComponent<EnemyManager>().Attack;
+        animator.gameObject.GetComponent<EnemyManager>().enemyManager.Battle(Attack);
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
@@ -21,7 +23,8 @@ public class MobAttackMotion : StateMachineBehaviour
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-
+        
+        animator.SetBool("CanAttack", false);
     }
 
     // OnStateMove is called right after Animator.OnAnimatorMove()

@@ -1,10 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class EnemyManager : MonoBehaviour
 {
-    CharacterManager enemyManager;
+    public CharacterManager enemyManager;
     GameObject[] Enemys;
     GameObject[] Mobs;
     protected string MobName;
@@ -13,6 +14,9 @@ public class EnemyManager : MonoBehaviour
     public float CurrentHealth, Attack, Damage, Guard;
     public float time;
     protected float SkillCooltime;
+    protected float AttackRange, dist;
+    protected NavMeshAgent pathFinder;
+    protected bool canmove;
     public int stage
     {
         get { return Stage; }
@@ -26,7 +30,7 @@ public class EnemyManager : MonoBehaviour
     }
     public void Battle(float damage)
     {
-        CurrentHealth = CurrentHealth - (damage - damage*(Guard/250));
+        CurrentHealth = CurrentHealth - (damage * (100 / (100 + Guard)));
         if (CurrentHealth < 0f)
         {
             Destroy(gameObject);
@@ -42,14 +46,13 @@ public class EnemyManager : MonoBehaviour
             gameObject.GetComponent<Animator>().SetInteger("AniIndex", 0);
             return;
         }
-        enemyManager.damage = Attack;
-        gameObject.GetComponent<Animator>().SetInteger("AniIndex", 1);
-        enemyManager.gameObject.GetComponent<Animator>().SetInteger("AniIndex", 3);
+        /*enemyManager.damage = Attack;*/
+        gameObject.GetComponent<Animator>().SetBool("CanAttack", true);
     }
     protected void Wars()
     {
         time += Time.deltaTime * AttackSpeed;
-        if (time >= 2f)
+        if (time >= 2.5f)
         {
             AttackMotion();
         }
@@ -240,6 +243,57 @@ public class EnemyManager : MonoBehaviour
                 gameObject.GetComponent<Animator>().SetInteger("AniIndex", 2);
             }
             time = 0f;
+        }
+    }
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.transform.root.tag == "Heroes")
+        {
+            if(other.transform.root.GetComponent<Animator>().GetBool("CanAttack"))
+            {
+                gameObject.GetComponent<Animator>().SetInteger("AniIndex", 3);
+            }
+        }
+        if (other.transform.tag == "Weapon")
+        {
+            Damage = other.transform.GetComponent<WeaponAttack>().Attack;
+            Battle(Damage);
+            gameObject.GetComponent<Animator>().SetInteger("AniIndex", 3);
+        }
+    }
+    protected virtual void NavMove()
+    {
+        enemyManager = CloseEnemyObject();
+        if (enemyManager != null)
+        {
+            dist = Vector3.Distance(gameObject.transform.position, enemyManager.transform.position);
+            if (dist < AttackRange)
+            {
+                canmove = false;
+                gameObject.GetComponent<Animator>().SetBool("CanMove", canmove);
+                pathFinder.isStopped = true;
+                gameObject.transform.LookAt(enemyManager.transform);
+            }
+            else
+            {
+                gameObject.GetComponent<Animator>().SetInteger("AniIndex", 0);
+                canmove = true;
+                gameObject.GetComponent<Animator>().SetBool("CanMove", canmove);
+                //계속 추적
+                pathFinder.isStopped = false; //계속 이동
+                pathFinder.SetDestination(enemyManager.transform.position);
+            }
+        }
+        if (CurrentHealth <= 0)
+        {
+
+            this.gameObject.tag = "Die";
+            this.gameObject.GetComponent<Animator>().SetTrigger("Dead");
+            time += Time.deltaTime;
+            if (time >= 3f)
+            {
+                Destroy(this.gameObject);
+            }
         }
     }
 }

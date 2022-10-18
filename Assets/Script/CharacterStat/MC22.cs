@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class MC22 : CharacterManager
 {
@@ -18,6 +19,8 @@ public class MC22 : CharacterManager
         NeedExp = new int[50];
         Guard = 10.0f;
         AttackSpeed = 0.8f;
+        AttackRange = 3f;
+        pathFinder = GetComponent<NavMeshAgent>();
         LevelST();
     }
 
@@ -37,7 +40,15 @@ public class MC22 : CharacterManager
     }
     private void LateUpdate()
     {
-        Wars();
+        NavMove();
+        if (!canmove)
+        {
+            Wars();
+        }
+        else
+        {
+            time = 0;
+        }
     }
 
 }

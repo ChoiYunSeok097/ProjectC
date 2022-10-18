@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class Mob04 : EnemyManager
 {
@@ -15,6 +16,8 @@ public class Mob04 : EnemyManager
         AttackSpeed = 1.3f;
         SkillCooltime = 0f;
         Job = 1;
+        AttackRange = 20f;
+        pathFinder = GetComponent<NavMeshAgent>();
     }
     private void Start()
     {
@@ -31,6 +34,14 @@ public class Mob04 : EnemyManager
     }
     private void LateUpdate()
     {
-        Wars();
+        NavMove();
+        if (!canmove)
+        {
+            Wars();
+        }
+        else
+        {
+            time = 0;
+        }
     }
 }

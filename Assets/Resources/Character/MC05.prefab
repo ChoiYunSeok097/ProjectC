@@ -13723,6 +13723,7 @@ GameObject:
   - component: {fileID: 953326810279278162}
   - component: {fileID: 953326810279278160}
   - component: {fileID: 953326810279278163}
+  - component: {fileID: 8957124585208598075}
   m_Layer: 0
   m_Name: THS04_Sword
   m_TagString: Untagged
@@ -13793,6 +13794,20 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!136 &8957124585208598075
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 953326810279278165}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  m_Radius: 0.13
+  m_Height: 2.0352576
+  m_Direction: 1
+  m_Center: {x: 0.00000002031728, y: 0.6737825, z: -0.00000002705805}
 --- !u!1 &953326810297845099
 GameObject:
   m_ObjectHideFlags: 0
@@ -18147,6 +18162,8 @@ GameObject:
   - component: {fileID: 953326810694087691}
   - component: {fileID: 953326810694087690}
   - component: {fileID: 953326810694087693}
+  - component: {fileID: 2847043816067598204}
+  - component: {fileID: 8659347871293044642}
   m_Layer: 0
   m_Name: MC05
   m_TagString: Heroes
@@ -18162,7 +18179,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 953326810694087692}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 19.913, y: 0, z: 3.259}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 953326809280621578}
@@ -18204,9 +18221,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7fec835fcdc30a944841f985285bbd68, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemyManager: {fileID: 0}
   time: 0
   CurrentHealth: 0
   Attack: 0
+  Guard: 0
   Weapon1: {fileID: 6035049588244574195, guid: b866a278107c78347b642ae4276126f5, type: 3}
   Weapon2: {fileID: 3720644978801746410, guid: 075a058870c255749b6c117ee252d992, type: 3}
 --- !u!95 &953326810694087690
@@ -18219,7 +18238,7 @@ Animator:
   m_GameObject: {fileID: 953326810694087692}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 0308cf4e83cf517488b60af58b290fe0, type: 3}
-  m_Controller: {fileID: 9100000, guid: ed1c66aa96767df4c9c60023c81c8fcc, type: 2}
+  m_Controller: {fileID: 9100000, guid: ae5b0f9614aa5b041a06698e446dda9f, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 1
@@ -18236,12 +18255,50 @@ CapsuleCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 953326810694087692}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
-  m_Radius: 1
-  m_Height: 1
+  m_Radius: 0.4
+  m_Height: 2
   m_Direction: 1
-  m_Center: {x: 0, y: 0.5, z: 0}
+  m_Center: {x: 0, y: 0.6, z: 0}
+--- !u!54 &2847043816067598204
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 953326810694087692}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!195 &8659347871293044642
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 953326810694087692}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.5
+  m_Speed: 3.5
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 2
+  m_BaseOffset: 0
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
 --- !u!1 &953326810696650009
 GameObject:
   m_ObjectHideFlags: 0

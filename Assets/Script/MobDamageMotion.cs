@@ -7,8 +7,8 @@ public class MobDamageMotion : StateMachineBehaviour
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        float a = animator.gameObject.GetComponent<EnemyManager>().Damage;
-        animator.gameObject.GetComponent<EnemyManager>().Battle(a);
+        /*float a = animator.gameObject.GetComponent<EnemyManager>().Damage;
+        animator.gameObject.GetComponent<EnemyManager>().Battle(a);*/
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks

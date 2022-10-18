@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class MC02 : CharacterManager
 {
@@ -18,14 +19,16 @@ public class MC02 : CharacterManager
         NeedExp = new int[50];
         Guard = 3.0f;
         AttackSpeed = 1.0f;
+        AttackRange = 3f;
+        pathFinder = GetComponent<NavMeshAgent>();
         LevelST();
+        
     }
 
     private void Start()
     {
         Weapon1(Weapon1);
         Weapon2(Weapon2);
-        Debug.Log("B name : " + CharName + MaxHealth + Attack);
     }
 
     private void Update()
@@ -34,7 +37,15 @@ public class MC02 : CharacterManager
     }
     private void LateUpdate()
     {
-        Wars();
+        NavMove();
+        if (!canmove)
+        {
+            Wars();
+        }
+        else
+        {
+            time = 0;
+        }
     }
 
 }

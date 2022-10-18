@@ -1,11 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
+using UnityEngine.UI;
 
 public class CharacterManager : MonoBehaviour
 {
+    protected Button SkillButton;
     Vector3 enemy;
-    EnemyManager enemyManager;
+    public EnemyManager enemyManager;
     GameObject[] Enemys;
     GameObject[] Heroes;
     protected string CharName;
@@ -15,12 +18,15 @@ public class CharacterManager : MonoBehaviour
     protected int Job;
     protected float Damage;
     public float time;
+    protected float AttackRange, dist;
+    protected NavMeshAgent pathFinder;
+    protected bool canmove;
     public float damage
     {
         get { return Damage; }
         set { Damage = value; }
     }
-    //0:검방패 1: 한손검/ 2:더블검/ 3:두손검/ 4:둔기병/ 5:궁수/ 6:마법사/ 7:신관
+    //0:검방패 1: 한손검/ 2:더블검/ 3:두손검/ 4:궁수/ 5:마법사/ 6:신관
     protected int Grade;
     protected float MaxHealth, AttackSpeed;
     public float CurrentHealth, Attack, Guard;
@@ -118,9 +124,8 @@ public class CharacterManager : MonoBehaviour
             gameObject.GetComponent<Animator>().SetInteger("AniIndex", 0);
             return;
         }
-        enemyManager.Damage = Attack;
-        gameObject.GetComponent<Animator>().SetInteger("AniIndex", 1);
-        enemyManager.gameObject.GetComponent<Animator>().SetInteger("AniIndex", 3);
+        /* enemyManager.Damage = Attack;*/
+        gameObject.GetComponent<Animator>().SetBool("CanAttack", true);
     }
     protected void Wars()
     {
@@ -132,11 +137,7 @@ public class CharacterManager : MonoBehaviour
     }
     public void Battle(float damage)
     {
-        CurrentHealth = CurrentHealth - (damage - (damage * (Guard / 250)));
-        if (CurrentHealth < 0f)
-        {
-            Destroy(gameObject);
-        }
+        CurrentHealth = CurrentHealth - (damage * (100 / (100 + Guard)));
     }
     protected void Skill(int job)
     {
@@ -320,6 +321,58 @@ public class CharacterManager : MonoBehaviour
                 MaxHealth = MaxHealth + b;
                 CurrentHealth = MaxHealth;
                 Guard = Guard + c;
+            }
+        }
+    }
+    public void OnTriggerEnter(Collider other)
+    {
+        if (other.transform.root.tag == "Enemy")
+        {
+            if (other.transform.root.GetComponent<Animator>().GetBool("CanAttack"))
+            {
+                gameObject.GetComponent<Animator>().SetInteger("AniIndex", 3);
+            }
+        }
+        if (other.transform.tag == "EnemyWeapon")
+        {
+            Damage = other.transform.GetComponent<EnemyWeaponAttack>().Attack;
+            Battle(Damage);
+            gameObject.GetComponent<Animator>().SetInteger("AniIndex", 3);
+        }
+    }
+
+    protected virtual void NavMove()
+    {
+        enemyManager = CloseEnemyObject();
+        if (enemyManager != null)
+        {
+            dist = Vector3.Distance(gameObject.transform.position, enemyManager.transform.position);
+            if(dist < AttackRange)
+            {
+                canmove = false;
+                gameObject.GetComponent<Animator>().SetBool("CanMove", canmove);
+                pathFinder.isStopped = true;
+                gameObject.transform.LookAt(enemyManager.transform);
+            }
+            else
+            {
+                gameObject.GetComponent<Animator>().SetInteger("AniIndex", 0);
+                canmove = true;
+                gameObject.GetComponent<Animator>().SetBool("CanMove", canmove);
+                //계속 추적
+                pathFinder.isStopped = false;
+                pathFinder.SetDestination(enemyManager.transform.position);
+            }
+        }
+        if (CurrentHealth <= 0)
+        {
+            
+            this.gameObject.tag = "Die";
+            this.gameObject.GetComponent<Animator>().SetTrigger("Dead");
+            time += Time.deltaTime;
+            if(time >= 3f)
+            {
+                Destroy(this.gameObject);
             }
         }
     }

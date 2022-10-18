@@ -10,18 +10,21 @@ public class AttackMotion : StateMachineBehaviour
         float time = animator.gameObject.GetComponent<CharacterManager>().time;
         time -= 2f;
         animator.gameObject.GetComponent<CharacterManager>().time = time;
+        float attack = animator.gameObject.GetComponent<CharacterManager>().Attack;
+        animator.gameObject.GetComponent<CharacterManager>().enemyManager.Battle(attack);
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         animator.SetInteger("AniIndex", 0);
+       
     }
 
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        
+        animator.SetBool("CanAttack", false);
     }
 
     // OnStateMove is called right after Animator.OnAnimatorMove()

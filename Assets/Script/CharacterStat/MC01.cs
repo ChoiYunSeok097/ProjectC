@@ -1,11 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
+using UnityEngine.UI;
 
 public class MC01 : CharacterManager
 {
     public GameObject Weapon1;
     public GameObject Weapon2;
+    
     private void Awake() 
     {
         CharName = "MC01";
@@ -13,11 +16,13 @@ public class MC01 : CharacterManager
         Job = 0;
         Grade = 2;
         MaxHealth = 300.0f;
-        CurrentHealth = 30f;
+        CurrentHealth = MaxHealth;
         Attack = 30.0f;
         NeedExp = new int[60];
         Guard = 5.0f;
         AttackSpeed = 1.0f;
+        AttackRange = 3f;
+        pathFinder = GetComponent<NavMeshAgent>();
         LevelST();
     }
 
@@ -30,13 +35,34 @@ public class MC01 : CharacterManager
     private void Update()
     {
         LevelUp();
-        if (Input.GetKeyDown(KeyCode.P))
+        if (Input.GetKeyDown(KeyCode.K))
         {
             Skill(Job);
         }
     }
     private void LateUpdate()
     {
-        Wars();
+        NavMove();
+        if (!canmove)
+        {
+            Wars();
+        }
+        else
+        {
+            time = 0;
+        }
     }
+    /*public void OnTriggerEnter(Collider other)
+    {
+        if(other.transform.root.GetComponent<Animator>().GetBool("CanAttack"))
+        {
+            Damage = other.transform.root.GetComponent<EnemyManager>().Attack;
+            Battle(Damage);
+        }
+        if (other.transform.tag == "Weapon")
+        {
+            Damage = other.transform.GetComponent<WeaponAttack>().Attack;
+            Battle(Damage);
+        }
+    }*/
 }
