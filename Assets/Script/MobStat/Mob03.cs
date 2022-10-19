@@ -2,12 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.UI;
 
 public class Mob03 : EnemyManager
 {
 
     private void Awake()
     {
+        var canvas = GameObject.Find("Canvas");
+        hp = Instantiate<Image>(Hp);
+        hp.transform.SetParent(canvas.transform);
+        HpPosition();
         MobName = "Mob03";
         MaxHealth = 250.0f;
         Attack = 35.0f;
@@ -43,5 +48,6 @@ public class Mob03 : EnemyManager
         {
             time = 0;
         }
+        HpPosition();
     }
 }

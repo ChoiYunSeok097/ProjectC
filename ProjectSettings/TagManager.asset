@@ -7,6 +7,9 @@ TagManager:
   - Char
   - Enemy
   - Heroes
+  - Die
+  - EnemyWeapon
+  - Weapon
   layers:
   - Default
   - TransparentFX

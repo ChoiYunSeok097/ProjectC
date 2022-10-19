@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.UI;
 
 public class MC06 : CharacterManager
 {
@@ -9,6 +10,10 @@ public class MC06 : CharacterManager
     public GameObject Weapon2;
     private void Awake()
     {
+        var canvas = GameObject.Find("Canvas");
+        hp = Instantiate<Image>(Hp);
+        hp.transform.SetParent(canvas.transform);
+        HpPosition();
         CharName = "MC06";
         Character_Lv = 1;
         Job = 5;
@@ -45,6 +50,7 @@ public class MC06 : CharacterManager
         {
             time = 0;
         }
+        HpPosition();
     }
 
 }

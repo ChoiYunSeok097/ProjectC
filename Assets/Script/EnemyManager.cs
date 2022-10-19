@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.UI;
 
 public class EnemyManager : MonoBehaviour
 {
@@ -17,6 +18,10 @@ public class EnemyManager : MonoBehaviour
     protected float AttackRange, dist;
     protected NavMeshAgent pathFinder;
     protected bool canmove;
+    public Transform hpPos;
+    public Image Hp;
+    protected Image hp;
+    protected Vector3 screenPos;
     public int stage
     {
         get { return Stage; }
@@ -295,5 +300,11 @@ public class EnemyManager : MonoBehaviour
                 Destroy(this.gameObject);
             }
         }
+    }
+    protected void HpPosition()
+    {
+        screenPos = Camera.main.WorldToScreenPoint(hpPos.transform.position);
+        hp.transform.position = screenPos;
+        hp.fillAmount = CurrentHealth / MaxHealth;
     }
 }

@@ -11,6 +11,10 @@ public class MC01 : CharacterManager
     
     private void Awake() 
     {
+        var canvas = GameObject.Find("Canvas");
+        hp = Instantiate<Image>(Hp);
+        hp.transform.SetParent(canvas.transform);
+        HpPosition();
         CharName = "MC01";
         Character_Lv = 1;
         Job = 0;
@@ -51,6 +55,7 @@ public class MC01 : CharacterManager
         {
             time = 0;
         }
+        HpPosition();
     }
     /*public void OnTriggerEnter(Collider other)
     {

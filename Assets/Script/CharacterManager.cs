@@ -21,6 +21,10 @@ public class CharacterManager : MonoBehaviour
     protected float AttackRange, dist;
     protected NavMeshAgent pathFinder;
     protected bool canmove;
+    public Transform hpPos;
+    public Image Hp;
+    protected Image hp;
+    protected Vector3 screenPos;
     public float damage
     {
         get { return Damage; }
@@ -375,6 +379,12 @@ public class CharacterManager : MonoBehaviour
                 Destroy(this.gameObject);
             }
         }
+    }
+    protected void HpPosition()
+    {
+        screenPos = Camera.main.WorldToScreenPoint(hpPos.transform.position);
+        hp.transform.position = screenPos;
+        hp.fillAmount = CurrentHealth / MaxHealth;
     }
 }
 

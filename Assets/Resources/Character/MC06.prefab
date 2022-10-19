@@ -7893,6 +7893,7 @@ Transform:
   - {fileID: 5286702186744480920}
   - {fileID: 5286702185821099955}
   - {fileID: 5286702185418820793}
+  - {fileID: 8614453494198659915}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -7910,6 +7911,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyManager: {fileID: 0}
   time: 0
+  hpPos: {fileID: 8614453494198659915}
+  Hp: {fileID: 5563015221610789537, guid: c055b7729e840694ca46b43c3bc574bf, type: 3}
   CurrentHealth: 0
   Attack: 0
   Guard: 0
@@ -20959,3 +20962,33 @@ SkinnedMeshRenderer:
     m_Center: {x: -0.482764, y: -0.000000026077032, z: 0.0000000055879354}
     m_Extent: {x: 0.55778146, y: 0.049782977, z: 0.02136139}
   m_DirtyAABB: 0
+--- !u!1 &6117160320654585579
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8614453494198659915}
+  m_Layer: 0
+  m_Name: HpPos
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8614453494198659915
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6117160320654585579}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 1.7, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 5286702185642410256}
+  m_RootOrder: 24
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
