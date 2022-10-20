@@ -14,7 +14,7 @@ public class Mob01 : EnemyManager
         hp.transform.SetParent(canvas.transform);
         HpPosition();
         MobName = "Mob01";
-        MaxHealth = 500.0f;
+        MaxHealth = 300.0f;
         Attack = 20.0f;
         Guard = 5.0f;
         CurrentHealth = MaxHealth;
