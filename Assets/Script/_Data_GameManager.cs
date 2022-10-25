@@ -4,7 +4,10 @@ using UnityEngine;
 
 public class _Data_GameManager : MonoBehaviour
 {
-    public GameObject MonsterParent,player;
+    public GameObject MonsterParent,player;     //parent object
+
+    public Transform[] playerPos;                // players Position
+
     //Monster monster;
     //Enemy enemy;
 
@@ -16,8 +19,10 @@ public class _Data_GameManager : MonoBehaviour
         _Data_InstanceManager.instance.instanceList();
         _Data_InstanceManager.instance.player = player;
 
-        _Data_InstanceManager.instance.createChar("MC01",player.transform,new Vector3(0,0,0));
+        _Data_InstanceManager.instance.createParty(player.transform,playerPos);     //create Party in file
+
         //_Data_ResourseManager.instance.PrintResorces();
+
     }
 
     // Update is called once per frame
@@ -31,7 +36,7 @@ public class _Data_GameManager : MonoBehaviour
             time = 0.0f;
         }
         */
-
-
     }
+
+
 }

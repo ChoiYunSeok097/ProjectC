@@ -17257,10 +17257,8 @@ GameObject:
   m_Component:
   - component: {fileID: 63325953738450562}
   - component: {fileID: 4354837112521836229}
-  - component: {fileID: 7871840253006990995}
   - component: {fileID: 2186662213482398674}
   - component: {fileID: 7890880732265211254}
-  - component: {fileID: 7890880732265211255}
   m_Layer: 0
   m_Name: MC01
   m_TagString: Heroes
@@ -17326,27 +17324,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &7871840253006990995
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7890880732265211253}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 514375513be79e147bfb9f09581c3275, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  enemyManager: {fileID: 0}
-  time: 0
-  hpPos: {fileID: 8204920602651099327}
-  Hp: {fileID: 5563015221610789537, guid: c055b7729e840694ca46b43c3bc574bf, type: 3}
-  CurrentHealth: 0
-  Attack: 0
-  Guard: 0
-  Weapon1: {fileID: 0}
-  Weapon2: {fileID: 0}
 --- !u!136 &2186662213482398674
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -17377,28 +17354,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!195 &7890880732265211255
-NavMeshAgent:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7890880732265211253}
-  m_Enabled: 1
-  m_AgentTypeID: 0
-  m_Radius: 0.5
-  m_Speed: 3.5
-  m_Acceleration: 8
-  avoidancePriority: 50
-  m_AngularSpeed: 120
-  m_StoppingDistance: 0
-  m_AutoTraverseOffMeshLink: 1
-  m_AutoBraking: 1
-  m_AutoRepath: 1
-  m_Height: 2
-  m_BaseOffset: 0
-  m_WalkableMask: 4294967295
-  m_ObstacleAvoidanceType: 4
 --- !u!1 &7915616853229779205
 GameObject:
   m_ObjectHideFlags: 0

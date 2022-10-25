@@ -5,7 +5,7 @@ using System.IO;
 
 public class _Data_DataInput : _Data_SingleTon<_Data_DataInput>
 {
-    string path = Application.dataPath+"/Party.csv";
+    string path = Application.dataPath;
 
 
     public void saveFile(string _name, string [] _characters)
@@ -22,19 +22,19 @@ public class _Data_DataInput : _Data_SingleTon<_Data_DataInput>
 
     public List<string> loadFile(string _name)
     {
-        List<string> characters = new List<string>();
+        List<string> str = new List<string>();
         
-        using(StreamReader sr = new StreamReader(path))
+        using(StreamReader sr = new StreamReader(path+_name))
         {
             string line = string.Empty;
             while((line = sr.ReadLine()) != null)
             {
-                characters.Add(line);
+                str.Add(line);
                 line = string.Empty;
             }
             sr.Close();
         }
-        return characters;
+        return str;
     }
 
 }
