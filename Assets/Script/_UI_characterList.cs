@@ -31,7 +31,7 @@ public class _UI_characterList : MonoBehaviour
 
     void loadCharacter()
     {
-       List<string>list = _Data_DataInput.instante.loadFile(fileName);
+       List<string>list = _Data_DataInput.instance.loadFile(fileName);
        for(int i=0; i<characterImg.Length; i++)
        {
             //Debug.Log(list.Count);

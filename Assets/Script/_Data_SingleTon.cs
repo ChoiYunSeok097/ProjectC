@@ -6,7 +6,7 @@ public class _Data_SingleTon<T> where T : class, new()
 {
     static T inst;
 
-    public static T instante
+    public static T instance
     {
         get
         {
