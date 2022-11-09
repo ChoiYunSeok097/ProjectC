@@ -25,7 +25,7 @@ public class _UI_characterList : MonoBehaviour
         }
          foreach(Image img in characterImg)
         {
-            img.sprite = Resources.Load<Sprite>("Image/Background");
+            //img.sprite = Resources.Load<Sprite>("Image/Background");
         }
     }
 
@@ -37,8 +37,8 @@ public class _UI_characterList : MonoBehaviour
             //Debug.Log(list.Count);
             if(i>=list.Count)
             break;
-            characterImg[i].sprite = Resources.Load<Sprite>("Image/" + list[i]);
-            characterText[i].text = list[i];
+            //characterImg[i].sprite = Resources.Load<Sprite>("Image/" + list[i]);
+            //characterText[i].text = list[i];
        }
     }
 

@@ -13435,8 +13435,7 @@ GameObject:
   - component: {fileID: 7259858473834024110}
   - component: {fileID: 7259858473834024109}
   - component: {fileID: 7259858473834024104}
-  - component: {fileID: 7259858473834024108}
-  - component: {fileID: 7259858473834024111}
+  - component: {fileID: 648096172}
   m_Layer: 0
   m_Name: Mob01
   m_TagString: Enemy
@@ -13493,7 +13492,7 @@ Animator:
   m_GameObject: {fileID: 7259858473834024105}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 0308cf4e83cf517488b60af58b290fe0, type: 3}
-  m_Controller: {fileID: 9100000, guid: 2fcec332f1eabaf4ea4f747d68e64bdb, type: 2}
+  m_Controller: {fileID: 9100000, guid: 9606129311f2c2c40bda2e4ae8ac7540, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 1
@@ -13516,7 +13515,7 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 112
   m_CollisionDetection: 0
 --- !u!136 &7259858473834024104
 CapsuleCollider:
@@ -13526,13 +13525,13 @@ CapsuleCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7259858473834024105}
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 0.5
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0.6, z: 0}
---- !u!114 &7259858473834024108
+--- !u!114 &648096172
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -13541,39 +13540,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 7259858473834024105}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5423cbb15ba58574495bb1e8ccdaac98, type: 3}
+  m_Script: {fileID: 11500000, guid: 61c879f9d46fbbe4685b5c4019f95be6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyManager: {fileID: 0}
-  CurrentHealth: 0
-  Attack: 0
-  Damage: 0
-  Guard: 0
-  time: 0
-  hpPos: {fileID: 6643298026908038738}
-  Hp: {fileID: 5563015221610789537, guid: c055b7729e840694ca46b43c3bc574bf, type: 3}
---- !u!195 &7259858473834024111
-NavMeshAgent:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7259858473834024105}
-  m_Enabled: 1
-  m_AgentTypeID: 0
-  m_Radius: 0.5
-  m_Speed: 3.5
-  m_Acceleration: 8
-  avoidancePriority: 50
-  m_AngularSpeed: 120
-  m_StoppingDistance: 0
-  m_AutoTraverseOffMeshLink: 1
-  m_AutoBraking: 1
-  m_AutoRepath: 1
-  m_Height: 2
-  m_BaseOffset: 0
-  m_WalkableMask: 4294967295
-  m_ObstacleAvoidanceType: 4
 --- !u!1 &7259858473834024107
 GameObject:
   m_ObjectHideFlags: 0

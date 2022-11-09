@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class buttoncontroller : MonoBehaviour
 {
- public void Charactors_down()
+    public void Charactors_down()
     {
         SceneManager.LoadScene("HeroMenu");
     }
@@ -19,7 +19,7 @@ public class buttoncontroller : MonoBehaviour
     }
     public void button_200_inactive_down()
     {
-        SceneManager.LoadScene("InGame_UI");
+        SceneManager.LoadScene("InGame_Battle");
     }
     public void Backspace()
     {

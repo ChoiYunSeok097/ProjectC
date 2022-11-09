@@ -2436,6 +2436,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5319787064974200122}
   - component: {fileID: 5645569287698932643}
+  - component: {fileID: -7803403138203349229}
   m_Layer: 0
   m_Name: MC03
   m_TagString: Untagged
@@ -2500,6 +2501,22 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &-7803403138203349229
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4798724538062935936}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d42db904f26bc242a0a6a215febf518, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  goalPos: {x: 0, y: 0, z: 0}
+  hpPos: {fileID: 0}
+  Hp: {fileID: 0}
+  hpImage: {fileID: 0}
 --- !u!1 &4814638931005714249
 GameObject:
   m_ObjectHideFlags: 0
