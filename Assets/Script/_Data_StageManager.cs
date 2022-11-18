@@ -39,7 +39,7 @@ public class _Data_StageManager : MonoBehaviour
         Mob mob1 = new Mob();
         
         mob1.name = "Mob01";
-        mob1.hp = 3;
+        mob1.hp = 14;
         mob1.armor = 1;
         mob1.attack = 2;
         mob1.attackSpeed = 0.5f;

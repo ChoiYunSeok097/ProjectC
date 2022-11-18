@@ -10,20 +10,18 @@ public class _Data_Character : MonoBehaviour
     public Vector3 goalPos;
     Queue<GameObject> enemyList;
     GameObject targetEnemy;
-    enum CHARSTATE { idle, battle};
-    CHARSTATE charState;
+
     Animator anim;
-    Rigidbody rigidbody;
     Transform hpPos;
     Image Hp;
     Image HpMax;
     Image hpImage;
     Image hpMaxImage;
     
-    protected Vector3 screenPos;
+    Vector3 screenPos;
 
     // stat
-    float hp=4,armor=1,attack=2,attackSpeed=1,attackRange=1,speed=1,attackColTime;
+    float hp=1,armor=1,attack=1,attackSpeed=1,attackRange=1,speed=1,attackColTime;
 
     public _Data_Character()
     {
@@ -32,14 +30,13 @@ public class _Data_Character : MonoBehaviour
 
     void Awake() 
     {
+        // target setting
         enemyList = new Queue<GameObject>();
         goalPos = gameObject.transform.position;
         goalPos.z += 138;
 
-        CHARSTATE charState = CHARSTATE.idle;
+        // anim
         anim = gameObject.GetComponent<Animator>();
-
-        rigidbody = gameObject.GetComponent<Rigidbody>();
 
         // HP setting
         var canvas = GameObject.Find("Canvas");
@@ -65,8 +62,10 @@ public class _Data_Character : MonoBehaviour
         // find enemy
         SearchEnemy();
 
+        // time
         attackColTime += Time.deltaTime;
-        rigidbody.velocity =Vector3.zero;
+
+        // ui
         HpPosition();
     }
 
@@ -90,14 +89,15 @@ public class _Data_Character : MonoBehaviour
 
     void SearchEnemy()
     {
+        // turn to target
         characterTurn();
-        Collider[] cols = Physics.OverlapSphere(transform.position, 6f);
 
+        // search objects
+        Collider[] cols = Physics.OverlapSphere(transform.position, 6f);
         if(cols.Length > 0) 
         {
             for (int i = 0; i < cols.Length; i++) 
             {
-                //Debug.Log("find");
                 if (cols[i].tag == "Enemy") 
                 {
                     
@@ -131,11 +131,8 @@ public class _Data_Character : MonoBehaviour
 
     void AttackEnemy(GameObject _enemy)
     {
-        // set battle state
-        //charState = CHARSTATE.battle;
-
         // calculation enemy distance
-        if(Vector3.Distance(transform.position, _enemy.transform.position)<1.5f)
+        if(Vector3.Distance(transform.position, _enemy.transform.position)<attackRange)
         {
             // attack enemy
             if( attackColTime >= 1/attackSpeed)
@@ -187,8 +184,6 @@ public class _Data_Character : MonoBehaviour
             hpImage.gameObject.SetActive(false);
             hpMaxImage.gameObject.SetActive(false);
         }
-        Debug.Log(stat.hp+"\n");
-        Debug.Log(hp);
     }
 
     void HpPosition()

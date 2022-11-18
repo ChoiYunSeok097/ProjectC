@@ -31,6 +31,8 @@ public class _Data_InstanceManager :  _Data_SingleTon<_Data_InstanceManager>
             mob.transform.rotation = Quaternion.Euler(0,180,0);
             mob.transform.SetParent(_parent);
             mob.tag = "Enemy";
+            _Data_Enemy enemy = mob.AddComponent<_Data_Enemy>();
+            enemy.setStat(_mob);
         }
 
         return mob;

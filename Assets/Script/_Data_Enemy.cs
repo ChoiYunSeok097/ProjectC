@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class _Data_Enemy : MonoBehaviour
 {
@@ -10,17 +11,44 @@ public class _Data_Enemy : MonoBehaviour
     float hp=5,armor=1,attack=2,attackSpeed=1,attackRange=1,speed=1,attackColTime=0;
     Mob stat;
 
+    Transform hpPos;
+    Image Hp;
+    Image HpMax;
+    Image hpImage;
+    Image hpMaxImage;
+    Vector3 screenPos;
+
     private void Awake() 
     {
+        
         PlayerList = new Queue<GameObject>();
         anim = gameObject.GetComponent<Animator>();
 
-
+        // HP ui setting
+        var canvas = GameObject.Find("Canvas");
+        Hp = Resources.Load<Image>("UI_Ingame/"+"Hp");
+        HpMax = Resources.Load<Image>("UI_Ingame/"+"HpMax");
+        hpMaxImage = Instantiate<Image>(HpMax);
+        hpImage = Instantiate<Image>(Hp);
+        hpMaxImage.transform.SetParent(canvas.transform);
+        hpImage.transform.SetParent(canvas.transform);
+        hpPos = transform.Find("HpPos");
+        HpPosition();
     }
 
     void Start()
     {
         
+    }
+    public void setStat(Mob _stat)
+    {
+        stat = _stat;
+        hp = stat.hp;
+        armor = stat.armor;
+        attack = stat.attack;
+        attackSpeed = stat.attackSpeed;
+        attackRange = stat.attackRange;
+        speed = stat.speed;
     }
 
     void Update()
@@ -29,17 +57,16 @@ public class _Data_Enemy : MonoBehaviour
         SearchEnemy();
 
         attackColTime += Time.deltaTime;
-    }
 
-    private void OnTriggerEnter(Collider other) 
-    {
-        if(other.transform.tag == "Heroes")
-            PlayerList.Enqueue(other.gameObject);
-
+        // ui
+        HpPosition();
     }
 
     void SearchEnemy()
     {
+        // turn to target
+        characterTurn();
+
         Collider[] cols = Physics.OverlapSphere(transform.position, 6f);
 
         if(cols.Length > 0) 
@@ -78,8 +105,6 @@ public class _Data_Enemy : MonoBehaviour
 
     void AttackPlayer(GameObject _Player)
     {
-        // set battle state
-        //charState = CHARSTATE.battle;
 
         // calculation enemy distance
         if(Vector3.Distance(transform.position, _Player.transform.position)<1.5f)
@@ -110,6 +135,15 @@ public class _Data_Enemy : MonoBehaviour
 
         }
     }
+    void characterTurn()
+    {
+        if(targetPlayer != null)
+        {
+            transform.LookAt(targetPlayer.transform);
+        }
+        //else
+            //transform.LookAt(targetPlayer.transform);
+    }
 
     public void TakeDemage(float _demage)
     {
@@ -121,6 +155,18 @@ public class _Data_Enemy : MonoBehaviour
         if(hp <= 0)
         {
             gameObject.SetActive(false);
+            hpImage.gameObject.SetActive(false);
+            hpMaxImage.gameObject.SetActive(false);
         }
+    }
+
+    void HpPosition()
+    {
+        screenPos = Camera.main.WorldToScreenPoint(hpPos.transform.position);
+        hpImage.transform.position = screenPos;
+        hpMaxImage.transform.position = screenPos;
+        if(hp<=0) hp = 0;
+        hpImage.fillAmount = hp / stat.hp;
+
     }
 }

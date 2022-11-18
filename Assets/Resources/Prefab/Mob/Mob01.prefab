@@ -13435,7 +13435,6 @@ GameObject:
   - component: {fileID: 7259858473834024110}
   - component: {fileID: 7259858473834024109}
   - component: {fileID: 7259858473834024104}
-  - component: {fileID: 648096172}
   m_Layer: 0
   m_Name: Mob01
   m_TagString: Enemy
@@ -13531,18 +13530,6 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0.6, z: 0}
---- !u!114 &648096172
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7259858473834024105}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 61c879f9d46fbbe4685b5c4019f95be6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &7259858473834024107
 GameObject:
   m_ObjectHideFlags: 0
