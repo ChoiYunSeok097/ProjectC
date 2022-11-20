@@ -72,5 +72,9 @@ public class _InGame_SkillCoolTime : MonoBehaviour
             pauseBg.gameObject.SetActive(true);
         }
     }
-
+    public void Continue()
+    {
+        Time.timeScale = 1;
+        pauseBg.gameObject.SetActive(false);
+    }
 }
