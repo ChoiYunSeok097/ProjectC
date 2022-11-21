@@ -26,8 +26,8 @@ public class SkillEffect : MonoBehaviour
                     //Solo heal
                     float heal = attack * 2;
                     HpHeal(heal);
-                    enemy.gameObject.GetComponent<Animator>().SetInteger("AniIndex", 3); //enemy damage motion
-                    gameObject.GetComponent<Animator>().SetBool("Skill", true); // char skill motion
+                    enemy.gameObject.GetComponent<Animator>().SetInteger("AniIndex", 3); //enemy attacked motion
+                    gameObject.GetComponent<Animator>().SetTrigger("Skill"); // char skill motion
                 }
             }
         }
@@ -49,8 +49,8 @@ public class SkillEffect : MonoBehaviour
                     _Data_Enemy enemy = cols[i].gameObject.GetComponent<_Data_Enemy>();
                     float skilldamage = attack * 4; // skilldamage
                     enemy.TakeDemage(skilldamage);
-                    enemy.gameObject.GetComponent<Animator>().SetInteger("AniIndex", 3); //enemy damage motion
-                    gameObject.GetComponent<Animator>().SetBool("Skill", true); // char skill motion
+                    enemy.gameObject.GetComponent<Animator>().SetInteger("AniIndex", 3); //enemy attacked motion
+                    gameObject.GetComponent<Animator>().SetTrigger("Skill"); // char skill motion
                 }
             }
         }
@@ -72,8 +72,8 @@ public class SkillEffect : MonoBehaviour
                     _Data_Enemy enemy = cols[i].gameObject.GetComponent<_Data_Enemy>();
                     float skilldamage = attack * 4; // skilldamage
                     enemy.TakeDemage(skilldamage);
-                    enemy.gameObject.GetComponent<Animator>().SetInteger("AniIndex", 3); //enemy damage motion
-                    gameObject.GetComponent<Animator>().SetBool("Skill", true); // char skill motion
+                    enemy.gameObject.GetComponent<Animator>().SetInteger("AniIndex", 3); //enemy attacked motion
+                    gameObject.GetComponent<Animator>().SetTrigger("Skill"); // char skill motion
                 }
             }
         }
@@ -95,8 +95,8 @@ public class SkillEffect : MonoBehaviour
                     _Data_Enemy enemy = cols[i].gameObject.GetComponent<_Data_Enemy>();
                     float skilldamage = attack * 5; // skilldamage
                     enemy.TakeDemage(skilldamage);
-                    enemy.gameObject.GetComponent<Animator>().SetInteger("AniIndex", 3); //enemy damage motion
-                    gameObject.GetComponent<Animator>().SetBool("Skill", true); // char skill motion
+                    enemy.gameObject.GetComponent<Animator>().SetInteger("AniIndex", 3); //enemy attacked motion
+                    gameObject.GetComponent<Animator>().SetTrigger("Skill"); // char skill motion
                 }
             }
         }
@@ -111,8 +111,8 @@ public class SkillEffect : MonoBehaviour
         _Data_Enemy enemy = targetEnemy.GetComponent<_Data_Enemy>();
         float skilldamage = attack * 5; // skilldamage
         enemy.TakeDemage(skilldamage);
-        enemy.gameObject.GetComponent<Animator>().SetInteger("AniIndex", 3); //enemy damage motion
-        gameObject.GetComponent<Animator>().SetBool("Skill", true); // char skill motion               
+        enemy.gameObject.GetComponent<Animator>().SetInteger("AniIndex", 3); //enemy attacked motion
+        gameObject.GetComponent<Animator>().SetTrigger("Skill"); // char skill motion               
         effect = Resources.Load<GameObject>("Effect/LigthningState"); // skill effect
         skill = Instantiate<GameObject>(effect); // create
         skill.transform.SetParent(transform, false);
@@ -131,8 +131,8 @@ public class SkillEffect : MonoBehaviour
                     _Data_Enemy enemy = cols[i].gameObject.GetComponent<_Data_Enemy>();
                     float skilldamage = attack * 5; // skilldamage
                     enemy.TakeDemage(skilldamage);
-                    enemy.gameObject.GetComponent<Animator>().SetInteger("AniIndex", 3); //enemy damage motion
-                    gameObject.GetComponent<Animator>().SetBool("Skill", true); // char skill motion
+                    enemy.gameObject.GetComponent<Animator>().SetInteger("AniIndex", 3); //enemy attacked motion
+                    gameObject.GetComponent<Animator>().SetTrigger("Skill"); // char skill motion
                 }
             }
         }
@@ -154,7 +154,7 @@ public class SkillEffect : MonoBehaviour
                     _Data_Character heroes = cols[i].gameObject.GetComponent<_Data_Character>();
                     float heal = attack * 3; // skilldamage
                     heroes.HpHeal(heal);
-                    gameObject.GetComponent<Animator>().SetBool("Skill", true); // char skill motion
+                    gameObject.GetComponent<Animator>().SetTrigger("Skill"); // char skill motion
                     effect = Resources.Load<GameObject>("Effect/HealEffect"); // skill effect
                     skill = Instantiate<GameObject>(effect); // create
                     skill.transform.SetParent(heroes.transform, false);
@@ -167,10 +167,18 @@ public class SkillEffect : MonoBehaviour
     {
         Destroy(skill);
     }
-    public void SkillOff()
+    /*public void HpHeal(float hpheal)
     {
-        gameObject.GetComponent<Animator>().SetBool("Skill", false);
-    }
+        if (hp < maxhp)
+        {
+            hp += hpheal;
+        }
+        if (hp > maxhp)
+        {
+            hp = maxhp;
+        }
+    }*/
+
     // Update is called once per frame
     void Update()
     {
