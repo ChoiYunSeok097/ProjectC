@@ -3,13 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Characters : MonoBehaviour
+public class LoadCH : MonoBehaviour
 {
-    public List<Slot> characters;
+    private Image Chimage;
 
     private void Awake()
     {
-        characters = new List<Slot>();
+        Chimage = GetComponent<Image>();
+    }
+    public void LoadCharacters()
+    {
+        
     }
     void Start()
     {
