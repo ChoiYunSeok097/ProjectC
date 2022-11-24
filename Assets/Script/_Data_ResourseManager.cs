@@ -46,6 +46,10 @@ public class _Data_ResourseManager : _Data_SingleTon<_Data_ResourseManager>
     {
         return imgList.Find(o=>o.name.Equals(_name));
     }
+    public List<GameObject> getChar()
+    {
+        return CharList;
+    }
     public void PrintResorces()
     {
         
