@@ -9,7 +9,8 @@ public class _Data_Character : MonoBehaviour
     public Character stat;
     public Vector3 goalPos;
     Queue<GameObject> enemyList;
-    GameObject targetEnemy;
+    public GameObject targetEnemy;
+    public GameObject throwItem;
 
     Animator anim;
     Transform hpPos;
@@ -20,8 +21,10 @@ public class _Data_Character : MonoBehaviour
     
     Vector3 screenPos;
 
+    public bool isSkill;
+
     // stat
-    float hp=1,armor=1,attack=1,attackSpeed=1,attackRange=1,speed=1,attackColTime;
+    public float hp=1,armor=1,attack=1,attackSpeed=1,attackRange=1,speed=1,attackColTime,job;
 
     public _Data_Character()
     {
@@ -37,6 +40,7 @@ public class _Data_Character : MonoBehaviour
 
         // anim
         anim = gameObject.GetComponent<Animator>();
+        isSkill = false;
 
         // HP setting
         var canvas = GameObject.Find("Canvas");
@@ -47,8 +51,7 @@ public class _Data_Character : MonoBehaviour
         hpMaxImage.transform.SetParent(canvas.transform);
         hpImage.transform.SetParent(canvas.transform);
         hpPos = transform.Find("HpPos");
-        HpPosition();
-
+        HpPosition();    
     }
 
     void start()
@@ -78,6 +81,12 @@ public class _Data_Character : MonoBehaviour
         attackSpeed = stat.attackSpeed;
         attackRange = stat.attackRange;
         speed = stat.speed;
+        job = stat.job;
+
+        if (job == 1)
+        {
+            throwItem = Resources.Load<GameObject>("Prefab/Item/Arrows");
+        }
     }
     void defaultMove()
     {
@@ -132,33 +141,74 @@ public class _Data_Character : MonoBehaviour
     void AttackEnemy(GameObject _enemy)
     {
         // calculation enemy distance
-        if(Vector3.Distance(transform.position, _enemy.transform.position)<attackRange)
+        if (!isSkill)
         {
-            // attack enemy
-            if( attackColTime >= 1/attackSpeed)
+            if (Vector3.Distance(transform.position, _enemy.transform.position) < attackRange)
             {
-                // motion
-                if(anim.GetBool("isMove") == true)
-                    anim.SetBool("isMove",false);
-                anim.SetTrigger("Attack");
+                // attack enemy
+                if (attackColTime >= 1 / attackSpeed)
+                {
+                    // motion
+                    // set no move
+                    if (anim.GetBool("isMove") == true)
+                        anim.SetBool("isMove", false);
+                    anim.SetTrigger("Attack");
 
-                attackColTime = 0;
+                    attackColTime = 0;
 
-                // give demage
-                _enemy.GetComponent<_Data_Enemy>().TakeDemage(attack);
+                    // give demage
+                    if(job == 0)
+                        _enemy.GetComponent<_Data_Enemy>().TakeDemage(attack);
+                    else if(job == 1)
+                    {
+                        //ThrowWeapon(throwItem, _enemy, transform.position);
+                    }
+                }
+            }
+            else
+            {
+                //motion
+                // set Move
+                if (anim.GetBool("isMove") != true)
+                    anim.SetBool("isMove", true);
+
+                // move to enemy
+                Vector3 target = new Vector3(_enemy.transform.position.x, 0, _enemy.transform.position.z);
+                transform.position = Vector3.MoveTowards(transform.position, _enemy.transform.position, speed * Time.deltaTime);
             }
         }
-        else
+    }
+
+    public void Skill()
+    {
+        // motion
+        anim.SetTrigger("skill");
+
+        // character type
+
+        // sword and sheid skill
+        if(job == 0)
         {
-            //motion
-            if(anim.GetBool("isMove") != true)
-                anim.SetBool("isMove",true);
-
-            // move to enemy
-            Vector3 target = new Vector3(_enemy.transform.position.x,0,_enemy.transform.position.z);
-            transform.position = Vector3.MoveTowards(transform.position, _enemy.transform.position , speed*Time.deltaTime);
-
+            //hp += 5;
+            // search objects
+            Collider[] cols = Physics.OverlapSphere(transform.position, 3f);
+            if (cols.Length > 0)
+            {
+                for (int i = 0; i < cols.Length; i++)
+                {
+                    if (cols[i].tag == "Heroes")
+                    {
+                        cols[i].GetComponent<_Data_Character>().TakeHp(3);
+                    }
+                    else if (cols[i].tag == "Enemy")
+                    {
+                        cols[i].GetComponent<_Data_Enemy>().TakeDemage(3);
+                    }
+                }
+            }
         }
+
+
     }
 
     void characterTurn()
@@ -184,6 +234,16 @@ public class _Data_Character : MonoBehaviour
             hpImage.gameObject.SetActive(false);
             hpMaxImage.gameObject.SetActive(false);
         }
+    }
+
+    public void TakeHp(float _heal)
+    {
+        if (hp < 0) return;             // if dead
+
+        if ((hp + _heal) > stat.hp)     // if maxhp < heal
+            hp = stat.hp;
+        else
+            hp += _heal;
     }
 
     void HpPosition()

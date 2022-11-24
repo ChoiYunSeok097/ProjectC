@@ -16,6 +16,8 @@ public class _InGame_SkillCoolTime : MonoBehaviour
     float skillCost = 3.0f;
     public bool pauseBtn = false;  //pause
     public GameObject pauseBg;
+    public _Data_Character character;
+    public _Data_GameManager gameManager;
 
     void Awake() 
     {
@@ -47,13 +49,20 @@ public class _InGame_SkillCoolTime : MonoBehaviour
     // Button event
     public void StartCoolTime() 
     {
-        if(SkillCost.discountSkillCost(skillCost))
+        if (character != null)
         {
-            leftTime = coolTime;                                        // 남은 시간을 쿨타임시간으로 초기화
-            isClicked = true;                                           // 클릭되었음을 변수에 저장
-            
-            if(button)                                                  // 버튼이 존재 할 시
-                button.enabled = false;                                 // 버튼 기능을 해지함.
+            if (SkillCost.discountSkillCost(skillCost))
+            {
+                leftTime = coolTime;                                        // 남은 시간을 쿨타임시간으로 초기화
+                isClicked = true;                                           // 클릭되었음을 변수에 저장
+
+                if (button)                                                  // 버튼이 존재 할 시
+                    button.enabled = false;                                 // 버튼 기능을 해지함.
+            }
+
+
+            character.Skill();
+            character = gameManager.ChangeSkill(character,this);
         }
     }
 
@@ -77,4 +86,6 @@ public class _InGame_SkillCoolTime : MonoBehaviour
         Time.timeScale = 1;
         pauseBg.gameObject.SetActive(false);
     }
+
+
 }

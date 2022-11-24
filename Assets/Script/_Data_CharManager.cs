@@ -28,6 +28,7 @@ public class _Data_CharManager : _Data_SingleTon<_Data_CharManager>
                 character.attackSpeed = float.Parse(contents[4]);
                 character.attackRange = float.Parse(contents[5]);
                 character.speed = float.Parse(contents[6]);
+                character.job = float.Parse(contents[7]);
                 characterScript.setStat(character);
             }
             

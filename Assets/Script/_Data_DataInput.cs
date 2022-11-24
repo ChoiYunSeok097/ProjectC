@@ -10,7 +10,7 @@ public class _Data_DataInput : _Data_SingleTon<_Data_DataInput>
 
     public void saveFile(string _name, string [] _characters)
     {
-        using(StreamWriter sw = new StreamWriter(path))
+        using(StreamWriter sw = new StreamWriter(path+"/"+_name))
         {
             foreach(string one in _characters)
             {
@@ -22,9 +22,8 @@ public class _Data_DataInput : _Data_SingleTon<_Data_DataInput>
 
     public List<string> loadFile(string _name)
     {
-        List<string> str = new List<string>();
-        
-        using(StreamReader sr = new StreamReader(path+_name))
+        List<string> str = new List<string>();       
+        using(StreamReader sr = new StreamReader(path+"/"+_name))
         {
             string line = string.Empty;
             while((line = sr.ReadLine()) != null)

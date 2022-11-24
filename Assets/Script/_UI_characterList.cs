@@ -8,7 +8,7 @@ public class _UI_characterList : MonoBehaviour
     public Image [] characterImg;
     public Text [] characterText;
 
-    string fileName = "Party";
+    string fileName = "Party.csv";
 
     void Awake()
     {
@@ -34,11 +34,10 @@ public class _UI_characterList : MonoBehaviour
        List<string>list = _Data_DataInput.instance.loadFile(fileName);
        for(int i=0; i<characterImg.Length; i++)
        {
-            //Debug.Log(list.Count);
             if(i>=list.Count)
-            break;
-            //characterImg[i].sprite = Resources.Load<Sprite>("Image/" + list[i]);
-            //characterText[i].text = list[i];
+                break;
+            characterImg[i].sprite = Resources.Load<Sprite>("Image/" + list[i]);
+            characterText[i].text = list[i];
        }
     }
 

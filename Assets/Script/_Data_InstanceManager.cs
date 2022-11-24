@@ -78,51 +78,11 @@ public class _Data_InstanceManager :  _Data_SingleTon<_Data_InstanceManager>
     public void createParty(Transform _parent, Transform [] _pos, List<GameObject> charList)
     {
         List<string>Chars = _Data_DataInput.instance.loadFile("/Party.csv");
-        createChar(Chars[0], _parent, _pos[0].position, charList);
-        createChar(Chars[1], _parent, _pos[1].position, charList);
-        createChar(Chars[2], _parent, _pos[2].position, charList);
-        createChar(Chars[3], _parent, _pos[3].position, charList);
-    }
 
-
-
-
-    /*
-    public GameObject createMob(string _name, Transform _parent, Vector3 _pos)
-    {
-        GameObject monster;
-        monster = monsters.Find(o=>o.transform.name.Equals(_name+"(Clone)"));
-
-        // Object Pulling
-        // null in nonActiveMonster
-        if(monster == null)
+        for (int i = 0; i < Chars.Count; i++)
         {
-            
-            GameObject resource = _Data_ResourseManager.instance.getResourceMonster(_name);
-            monster = GameObject.Instantiate<GameObject>(resource,_pos,Quaternion.identity);
-
-            Enemy enemy = monster.AddComponent<Enemy>();
-            enemy.player = player;
-            monster.transform.SetParent(_parent);
-            monster.tag = "Enemy";
-
+            createChar(Chars[i], _parent, _pos[i].position, charList);
         }
-        else
-        {
-            // active monster
-            monster.transform.position = _pos;
-            monster.SetActive(true);
-            monsters.Remove(monster);
-        }
-        return monster;
     }
 
-    */
-    /*
-    public void disabledMonster(GameObject monster)
-    {
-        monster.SetActive(false);
-        monsters.Add(monster);
-    }
-    */
 }

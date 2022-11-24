@@ -19,12 +19,6 @@ public class _DataUser : MonoBehaviour
         test();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     void test()
     {
         List<string> str = new List<string>();
@@ -36,7 +30,7 @@ public class _DataUser : MonoBehaviour
         }
 
         //SaveParty(str);
-        LoadParty();
+        //LoadParty();
     }
 
     //save pary infomation
