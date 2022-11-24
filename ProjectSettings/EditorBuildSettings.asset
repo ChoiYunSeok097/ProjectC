@@ -9,9 +9,6 @@ EditorBuildSettings:
     path: Assets/Scenes/MainLobby.unity
     guid: 7fa19a60ed7c1384fb3a61d292f31c82
   - enabled: 1
-    path: Assets/Scenes/UI_Party.unity
-    guid: 0258267f1370a0d41986b2e9926124f9
-  - enabled: 1
     path: Assets/Scenes/StageSelect.unity
     guid: 5a2e64b93749b9e4b883e7eae1109c04
   - enabled: 1
