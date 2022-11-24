@@ -3073,8 +3073,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1586792954}
   m_CullTransparentMesh: 1
-<<<<<<< HEAD
-=======
 --- !u!1 &1606698415
 GameObject:
   m_ObjectHideFlags: 0
@@ -3131,10 +3129,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d913d51a34036c44d9fa510684a37b3a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-<<<<<<< Updated upstream
-=======
->>>>>>> 4883f74cf3e3a7ca3f2be71a7b71170f251f15fb
->>>>>>> Stashed changes
 --- !u!1 &1644155504
 GameObject:
   m_ObjectHideFlags: 0
