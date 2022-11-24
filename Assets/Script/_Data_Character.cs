@@ -9,6 +9,7 @@ public class _Data_Character : MonoBehaviour
     public Character stat;
     public Vector3 goalPos;
     Queue<GameObject> enemyList;
+    GameObject skill, effect;
     public GameObject targetEnemy;
     public GameObject throwItem;
 
@@ -87,6 +88,10 @@ public class _Data_Character : MonoBehaviour
         {
             throwItem = Resources.Load<GameObject>("Prefab/Item/Arrows");
         }
+        if (job == 2)
+        {
+            throwItem = Resources.Load<GameObject>("Prefab/Item/balt");
+        }
     }
     void defaultMove()
     {
@@ -158,11 +163,7 @@ public class _Data_Character : MonoBehaviour
 
                     // give demage
                     if(job == 0)
-                        _enemy.GetComponent<_Data_Enemy>().TakeDemage(attack);
-                    else if(job == 1)
-                    {
-                        //ThrowWeapon(throwItem, _enemy, transform.position);
-                    }
+                        _enemy.GetComponent<_Data_Enemy>().TakeDemage(attack);          
                 }
             }
             else
@@ -179,7 +180,7 @@ public class _Data_Character : MonoBehaviour
         }
     }
 
-    public void Skill()
+    public bool Skill()
     {
         // motion
         anim.SetTrigger("skill");
@@ -189,7 +190,6 @@ public class _Data_Character : MonoBehaviour
         // sword and sheid skill
         if(job == 0)
         {
-            //hp += 5;
             // search objects
             Collider[] cols = Physics.OverlapSphere(transform.position, 3f);
             if (cols.Length > 0)
@@ -199,16 +199,85 @@ public class _Data_Character : MonoBehaviour
                     if (cols[i].tag == "Heroes")
                     {
                         cols[i].GetComponent<_Data_Character>().TakeHp(3);
+                    }              
+                }
+                effect = Resources.Load<GameObject>("Effect/FantasySun"); // skill effect
+                skill = Instantiate<GameObject>(effect); // create
+                skill.transform.SetParent(transform, false);
+                skill.transform.position = transform.position;
+                
+            }
+            
+            /*
+            Collider[] cols = Physics.OverlapSphere(transform.position, 4f); // enemy of skill range
+            if (cols.Length > 0)
+            {
+                for (int i = 0; i < cols.Length; i++)
+                {
+                    if (cols[i].tag == "Enemy")
+                    {
+                        _Data_Enemy enemy = cols[i].gameObject.GetComponent<_Data_Enemy>();
+                        float skilldamage = attack * 3; // skilldamage
+                        enemy.TakeDemage(skilldamage);
+                        //Solo heal
+                        float heal = attack * 2;
+                        HpHeal(heal);
+                        //enemy.gameObject.GetComponent<Animator>().SetInteger("AniIndex", 3); //enemy attacked motion
+                        gameObject.GetComponent<Animator>().SetTrigger("Skill"); // char skill motion
+                        
                     }
-                    else if (cols[i].tag == "Enemy")
+                }
+            }
+            effect = Resources.Load<GameObject>("Effect/FantasySun"); // skill effect
+            skill = Instantiate<GameObject>(effect); // create
+            skill.transform.SetParent(transform, false);
+            skill.transform.position = transform.position;
+            */
+
+            return true;
+        }
+
+        if(job ==1)
+        {
+            if (targetEnemy != null)
+            {
+                _Data_Enemy enemy = targetEnemy.GetComponent<_Data_Enemy>();           
+                gameObject.GetComponent<Animator>().SetTrigger("skill"); // char skill motion               
+                effect = Resources.Load<GameObject>("Effect/LigthningState"); // skill effect
+                skill = Instantiate<GameObject>(effect); // create
+                skill.transform.SetParent(transform, false);
+                skill.transform.position = gameObject.transform.position;
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+        if (job == 2)
+        {
+            // search objects
+            Collider[] cols = Physics.OverlapSphere(transform.position, 3f);
+            if (cols.Length > 0)
+            {
+                for (int i = 0; i < cols.Length; i++)
+                {        
+                    if (cols[i].tag == "Enemy")
                     {
                         cols[i].GetComponent<_Data_Enemy>().TakeDemage(3);
                     }
                 }
+                _Data_Enemy enemy = targetEnemy.GetComponent<_Data_Enemy>();
+                gameObject.GetComponent<Animator>().SetTrigger("skill"); // char skill motion               
+                effect = Resources.Load<GameObject>("Effect/MagicCircleExplode"); // skill effect
+                skill = Instantiate<GameObject>(effect); // create
+                skill.transform.SetParent(transform, false);
+                skill.transform.position = gameObject.transform.position;
+                return true;
             }
         }
 
-
+        return false;
     }
 
     void characterTurn()
@@ -254,5 +323,16 @@ public class _Data_Character : MonoBehaviour
         if(hp<=0) hp = 0;
         hpImage.fillAmount = hp / stat.hp;
     }
-    
+
+    public void HpHeal(float hpheal)
+    {
+        if (hp < stat.hp)
+        {
+            hp += hpheal;
+        }
+        if (hp > stat.hp)
+        {
+            hp = stat.hp;
+        }
+    }
 }

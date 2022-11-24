@@ -17,8 +17,11 @@ public class _InGame_ThrowItem : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
-        if (enemy != null)
+        if (enemy == null)
+        {
+            destroySelf();
+        }
+        else if (enemy != null)
         {
             enemyPos = enemy.transform.position;
         }

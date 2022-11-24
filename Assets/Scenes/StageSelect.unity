@@ -2265,9 +2265,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: buttoncontroller, Assembly-CSharp
-        m_MethodName: button_200_inactive_down
+      - m_Target: {fileID: 700016910}
+        m_TargetAssemblyTypeName: _Data_StageManager, Assembly-CSharp
+        m_MethodName: Stage_2
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

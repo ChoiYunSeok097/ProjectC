@@ -24456,9 +24456,6 @@ MonoBehaviour:
   - {fileID: 1070648739}
   - {fileID: 817947914}
   camera: {fileID: 1374646793}
-  skill_1: {fileID: 286941326}
-  skill_2: {fileID: 117352017}
-  skill_3: {fileID: 1064492944}
   skillButton:
   - {fileID: 286941326}
   - {fileID: 117352017}

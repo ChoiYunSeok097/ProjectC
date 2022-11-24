@@ -51,18 +51,20 @@ public class _InGame_SkillCoolTime : MonoBehaviour
     {
         if (character != null)
         {
-            if (SkillCost.discountSkillCost(skillCost))
+            bool isSkill = character.Skill();
+            if (isSkill)
             {
-                leftTime = coolTime;                                        // 남은 시간을 쿨타임시간으로 초기화
-                isClicked = true;                                           // 클릭되었음을 변수에 저장
+                character = gameManager.ChangeSkill(character, this);
 
-                if (button)                                                  // 버튼이 존재 할 시
-                    button.enabled = false;                                 // 버튼 기능을 해지함.
+                if (SkillCost.discountSkillCost(skillCost))
+                {
+                    leftTime = coolTime;                                        // 남은 시간을 쿨타임시간으로 초기화
+                    isClicked = true;                                           // 클릭되었음을 변수에 저장
+
+                    if (button)                                                  // 버튼이 존재 할 시
+                        button.enabled = false;                                 // 버튼 기능을 해지함.
+                }
             }
-
-
-            character.Skill();
-            character = gameManager.ChangeSkill(character,this);
         }
     }
 

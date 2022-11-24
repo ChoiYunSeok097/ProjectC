@@ -57,6 +57,34 @@ public class _Data_StageManager : MonoBehaviour
 
         // go to InGame
         SceneManager.LoadScene("InGame_Battle");
+    }
 
+    public void Stage_2()
+    {
+        // three waves
+        waves = new Wave[3];
+
+        // mob1 stat
+        Mob mob1 = new Mob();
+
+        mob1.name = "Mob01";
+        mob1.hp = 20;
+        mob1.armor = 1;
+        mob1.attack = 3;
+        mob1.attackSpeed = 0.7f;
+        mob1.attackRange = 1f;
+        mob1.speed = 1;
+
+        // input mob in waves
+        for (int i = 0; i < waves.Length; i++)
+        {
+            waves[i].mob1 = mob1;
+            waves[i].mob2 = mob1;
+            waves[i].mob3 = mob1;
+            waves[i].mob4 = mob1;
+        }
+
+        // go to InGame
+        SceneManager.LoadScene("InGame_Battle");
     }
 }
