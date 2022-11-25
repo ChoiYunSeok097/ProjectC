@@ -22,8 +22,11 @@ public class _inGame_MegisionAttack : StateMachineBehaviour
     {
         
         _Data_Character player = animator.gameObject.GetComponent<_Data_Character>();
-        Debug.Log(player.throwItem);
-        ThrowWeapon(player.throwItem, player.targetEnemy, animator.gameObject.GetComponent<_Data_Character>());
+
+        if (player.targetEnemy != null)
+        {
+            ThrowWeapon(player.throwItem, player.targetEnemy, animator.gameObject.GetComponent<_Data_Character>());
+        }
     }
 
     // OnStateMove is called right after Animator.OnAnimatorMove()

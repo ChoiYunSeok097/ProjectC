@@ -7,7 +7,7 @@ public class _inGame_MegisionSkill : StateMachineBehaviour
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     //override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     //{
-
+    //    
     //}
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
@@ -17,11 +17,10 @@ public class _inGame_MegisionSkill : StateMachineBehaviour
     //}
 
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
-    override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
-    {
-        _Data_Character player = animator.gameObject.GetComponent<_Data_Character>();
-        ThrowWeapon(player.throwItem, player.targetEnemy, animator.gameObject.GetComponent<_Data_Character>());
-    }
+    //override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+    //{
+    //    
+    //}
 
     // OnStateMove is called right after Animator.OnAnimatorMove()
     //override public void OnStateMove(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
@@ -34,11 +33,4 @@ public class _inGame_MegisionSkill : StateMachineBehaviour
     //{
     //    // Implement code that sets up animation IK (inverse kinematics)
     //}
-
-    void ThrowWeapon(GameObject _weapon, GameObject _enemy, _Data_Character _player)
-    {
-        GameObject weapon = GameObject.Instantiate<GameObject>(_weapon);
-        _InGame_ThrowItem _throwItem = weapon.AddComponent<_InGame_ThrowItem>();
-        _throwItem.setEnemy(_enemy, _player.transform.position, _player.attack*5);
-    }
 }

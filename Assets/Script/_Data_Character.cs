@@ -182,14 +182,16 @@ public class _Data_Character : MonoBehaviour
 
     public bool Skill()
     {
-        // motion
-        anim.SetTrigger("skill");
+        
 
         // character type
 
         // sword and sheid skill
         if(job == 0)
         {
+            // motion
+            anim.SetTrigger("skill");
+
             // search objects
             Collider[] cols = Physics.OverlapSphere(transform.position, 3f);
             if (cols.Length > 0)
@@ -204,36 +206,8 @@ public class _Data_Character : MonoBehaviour
                 effect = Resources.Load<GameObject>("Effect/FantasySun"); // skill effect
                 skill = Instantiate<GameObject>(effect); // create
                 skill.transform.SetParent(transform, false);
-                skill.transform.position = transform.position;
-                
+                skill.transform.position = transform.position;       
             }
-            
-            /*
-            Collider[] cols = Physics.OverlapSphere(transform.position, 4f); // enemy of skill range
-            if (cols.Length > 0)
-            {
-                for (int i = 0; i < cols.Length; i++)
-                {
-                    if (cols[i].tag == "Enemy")
-                    {
-                        _Data_Enemy enemy = cols[i].gameObject.GetComponent<_Data_Enemy>();
-                        float skilldamage = attack * 3; // skilldamage
-                        enemy.TakeDemage(skilldamage);
-                        //Solo heal
-                        float heal = attack * 2;
-                        HpHeal(heal);
-                        //enemy.gameObject.GetComponent<Animator>().SetInteger("AniIndex", 3); //enemy attacked motion
-                        gameObject.GetComponent<Animator>().SetTrigger("Skill"); // char skill motion
-                        
-                    }
-                }
-            }
-            effect = Resources.Load<GameObject>("Effect/FantasySun"); // skill effect
-            skill = Instantiate<GameObject>(effect); // create
-            skill.transform.SetParent(transform, false);
-            skill.transform.position = transform.position;
-            */
-
             return true;
         }
 
@@ -241,6 +215,9 @@ public class _Data_Character : MonoBehaviour
         {
             if (targetEnemy != null)
             {
+                // motion
+                anim.SetTrigger("skill");
+
                 _Data_Enemy enemy = targetEnemy.GetComponent<_Data_Enemy>();           
                 gameObject.GetComponent<Animator>().SetTrigger("skill"); // char skill motion               
                 effect = Resources.Load<GameObject>("Effect/LigthningState"); // skill effect
@@ -256,25 +233,28 @@ public class _Data_Character : MonoBehaviour
         }
         if (job == 2)
         {
+            // motion
+            anim.SetTrigger("skill");
+
             // search objects
-            Collider[] cols = Physics.OverlapSphere(transform.position, 3f);
+            Collider[] cols = Physics.OverlapSphere(transform.position, 10f);
             if (cols.Length > 0)
             {
                 for (int i = 0; i < cols.Length; i++)
                 {        
-                    if (cols[i].tag == "Enemy")
+                    if (cols[i].tag == "Enemy" && cols[i].gameObject.activeSelf)
                     {
-                        cols[i].GetComponent<_Data_Enemy>().TakeDemage(3);
+                        cols[i].GetComponent<_Data_Enemy>().TakeDemage(10);
                     }
                 }
-                _Data_Enemy enemy = targetEnemy.GetComponent<_Data_Enemy>();
-                gameObject.GetComponent<Animator>().SetTrigger("skill"); // char skill motion               
+                //_Data_Enemy enemy = targetEnemy.GetComponent<_Data_Enemy>();
+                //gameObject.GetComponent<Animator>().SetTrigger("skill"); // char skill motion               
                 effect = Resources.Load<GameObject>("Effect/MagicCircleExplode"); // skill effect
                 skill = Instantiate<GameObject>(effect); // create
                 skill.transform.SetParent(transform, false);
-                skill.transform.position = gameObject.transform.position;
-                return true;
+                skill.transform.position = gameObject.transform.position;       
             }
+            return true;
         }
 
         return false;
