@@ -10,11 +10,14 @@ public class _InGame_SkillCoolTime : MonoBehaviour
     public Image image;                 //스킬 이미지
     public Button button;               //스킬 버튼
     public float coolTime = 10.0f;      //쿨타임 시간
+    public bool pauseBtn = false;       //pause
     public bool isClicked = false;      //버튼이 클릭 되었는가
+    public bool speedX2 = false;
+    bool isActive = true;
     float leftTime = 10.0f;             //남은 시간
     float speed = 5.0f;                 //채우는 속도
     float skillCost = 3.0f;
-    public bool pauseBtn = false;  //pause
+    
     public GameObject pauseBg;
     public _Data_Character character;
     public _Data_GameManager gameManager;
@@ -49,8 +52,9 @@ public class _InGame_SkillCoolTime : MonoBehaviour
     // Button event
     public void StartCoolTime() 
     {
-        if (character != null)
+        if (character != null && isActive)
         {
+            character.skillBtn = this;
             bool isSkill = character.Skill();
             if (isSkill)
             {
@@ -83,11 +87,37 @@ public class _InGame_SkillCoolTime : MonoBehaviour
             pauseBg.gameObject.SetActive(true);
         }
     }
+
+    public void SpeedBtn()
+    {
+        if (!speedX2)
+        {
+            speedX2 = true;
+            Time.timeScale = 2f;
+        }
+        else
+        {
+            speedX2 = false;
+            Time.timeScale = 1f;
+        }
+
+    }
+
     public void Continue()
     {
         Time.timeScale = 1;
         pauseBg.gameObject.SetActive(false);
     }
 
-
+    public void disableBtn()
+    {
+        if (character != null)
+        {
+            if (character.gameObject.activeSelf == false)
+            {
+                button.image.color = Color.gray;
+                isActive = false;
+            }
+        }
+    }
 }

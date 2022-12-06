@@ -20687,11 +20687,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1782066652594198828}
-  - component: {fileID: 6852965756024347032}
   - component: {fileID: 1571632352402598879}
   - component: {fileID: 5969008658176561893}
   - component: {fileID: 3879375535277661036}
-  - component: {fileID: 6970757730075145221}
   m_Layer: 0
   m_Name: Mob12
   m_TagString: Enemy
@@ -20738,26 +20736,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
---- !u!114 &6852965756024347032
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9162321725645276945}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 305553961c1c82e4f86da89ac1a769c7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  enemyManager: {fileID: 0}
-  CurrentHealth: 0
-  Attack: 0
-  Damage: 0
-  Guard: 0
-  time: 0
-  hpPos: {fileID: 307167561789551070}
-  Hp: {fileID: 5563015221610789537, guid: c055b7729e840694ca46b43c3bc574bf, type: 3}
 --- !u!95 &1571632352402598879
 Animator:
   serializedVersion: 3
@@ -20790,7 +20768,7 @@ CapsuleCollider:
   m_Radius: 0.4
   m_Height: 2
   m_Direction: 1
-  m_Center: {x: 0, y: 0.6, z: 0}
+  m_Center: {x: 0, y: 1, z: 0}
 --- !u!54 &3879375535277661036
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -20807,28 +20785,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!195 &6970757730075145221
-NavMeshAgent:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9162321725645276945}
-  m_Enabled: 1
-  m_AgentTypeID: 0
-  m_Radius: 0.5
-  m_Speed: 3.5
-  m_Acceleration: 8
-  avoidancePriority: 50
-  m_AngularSpeed: 120
-  m_StoppingDistance: 0
-  m_AutoTraverseOffMeshLink: 1
-  m_AutoBraking: 1
-  m_AutoRepath: 1
-  m_Height: 2
-  m_BaseOffset: 0
-  m_WalkableMask: 4294967295
-  m_ObstacleAvoidanceType: 4
 --- !u!1 &9186872922584088369
 GameObject:
   m_ObjectHideFlags: 0

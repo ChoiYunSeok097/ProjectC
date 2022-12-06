@@ -13513,11 +13513,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 692530926044371511}
-  - component: {fileID: -5598831083187918236}
   - component: {fileID: 1861064754632016132}
   - component: {fileID: 3627148234053953548}
   - component: {fileID: 7942086756391749033}
-  - component: {fileID: 5612269866243639932}
   m_Layer: 0
   m_Name: Mob10
   m_TagString: Enemy
@@ -13564,26 +13562,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
---- !u!114 &-5598831083187918236
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5900074168886384670}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b17e2718aa04aa048b9e6c1dcdf595e8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  enemyManager: {fileID: 0}
-  CurrentHealth: 0
-  Attack: 0
-  Damage: 0
-  Guard: 0
-  time: 0
-  hpPos: {fileID: 3890106441144205933}
-  Hp: {fileID: 5563015221610789537, guid: c055b7729e840694ca46b43c3bc574bf, type: 3}
 --- !u!95 &1861064754632016132
 Animator:
   serializedVersion: 3
@@ -13616,7 +13594,7 @@ CapsuleCollider:
   m_Radius: 0.4
   m_Height: 2
   m_Direction: 1
-  m_Center: {x: 0, y: 0.6, z: 0}
+  m_Center: {x: 0, y: 1, z: 0}
 --- !u!54 &7942086756391749033
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -13633,28 +13611,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!195 &5612269866243639932
-NavMeshAgent:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5900074168886384670}
-  m_Enabled: 1
-  m_AgentTypeID: 0
-  m_Radius: 0.5
-  m_Speed: 3.5
-  m_Acceleration: 8
-  avoidancePriority: 50
-  m_AngularSpeed: 120
-  m_StoppingDistance: 0
-  m_AutoTraverseOffMeshLink: 1
-  m_AutoBraking: 1
-  m_AutoRepath: 1
-  m_Height: 2
-  m_BaseOffset: 0
-  m_WalkableMask: 4294967295
-  m_ObstacleAvoidanceType: 4
 --- !u!1 &5943858780866134703
 GameObject:
   m_ObjectHideFlags: 0

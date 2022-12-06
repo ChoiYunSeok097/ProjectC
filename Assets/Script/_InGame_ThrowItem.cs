@@ -5,6 +5,7 @@ using UnityEngine;
 public class _InGame_ThrowItem : MonoBehaviour
 {
     GameObject enemy;
+    public _Data_Character character;
     Vector3 enemyPos;
     public float damage = 0;
 
@@ -46,15 +47,29 @@ public class _InGame_ThrowItem : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.transform.tag == "Enemy")
+        
+        if (other != null)
         {
-            other.GetComponent<_Data_Enemy>().TakeDemage(damage);
-            destroySelf();
+            if (other.gameObject.tag == character.enemy)
+            {
+                other.GetComponent<_Data_Character>().TakeDemage(damage);
+                destroySelf();
+            }
+            else
+                limitDestroy();
         }
+    }
+
+    IEnumerator limitDestroy()
+    {
+        yield return new WaitForSeconds(2.0f);
+        if(gameObject.activeSelf)
+            destroySelf();
     }
 
     void destroySelf()
     {
+        _Data_InstanceManager.instance.throwItems.Add(this.gameObject);
         gameObject.SetActive(false);
     }
 }

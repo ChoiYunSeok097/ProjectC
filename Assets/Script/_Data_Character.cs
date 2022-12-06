@@ -6,12 +6,21 @@ using UnityEngine.UI;
 
 public class _Data_Character : MonoBehaviour
 {
-    public Character stat;
+    public string team;
+    public string enemy;
+
+    public Character playerStat;
+    public Mob mobStat;
     public Vector3 goalPos;
+
     Queue<GameObject> enemyList;
     GameObject skill, effect;
+
     public GameObject targetEnemy;
     public GameObject throwItem;
+
+    public _InGame_SkillCoolTime skillBtn;
+    
 
     Animator anim;
     Transform hpPos;
@@ -26,10 +35,11 @@ public class _Data_Character : MonoBehaviour
 
     // stat
     public float hp=1,armor=1,attack=1,attackSpeed=1,attackRange=1,speed=1,attackColTime,job;
+    bool canSkill,canCallTeam,isBattle;
 
     public _Data_Character()
     {
-        stat = new Character();
+        playerStat = new Character();
     }
 
     void Awake() 
@@ -55,7 +65,7 @@ public class _Data_Character : MonoBehaviour
         HpPosition();    
     }
 
-    void start()
+    void Start()
     {
         //InvokeRepeating
         
@@ -75,15 +85,59 @@ public class _Data_Character : MonoBehaviour
 
     public void setStat(Character _stat)
     {
-        stat = _stat;
-        hp = stat.hp;
-        armor = stat.armor;
-        attack = stat.attack;
-        attackSpeed = stat.attackSpeed;
-        attackRange = stat.attackRange;
-        speed = stat.speed;
-        job = stat.job;
+        playerStat = _stat;
+        hp = playerStat.hp;
+        armor = playerStat.armor;
+        attack = playerStat.attack;
+        attackSpeed = playerStat.attackSpeed;
+        attackRange = playerStat.attackRange;
+        speed = playerStat.speed;
+        job = playerStat.job;
 
+        // player or enemy
+
+        team = gameObject.tag;
+        if (gameObject.tag == "Heroes")    // if player character
+        {    
+            enemy = "Enemy";
+        }
+        else if(gameObject.tag == "Enemy")
+        {    
+            enemy = "Heroes";
+        }
+        // attack per job
+        if (job == 1)
+        {
+            throwItem = Resources.Load<GameObject>("Prefab/Item/Arrows");
+        }
+        if (job == 2)
+        {
+            throwItem = Resources.Load<GameObject>("Prefab/Item/balt");
+        }
+    }
+    public void setStat(Mob _stat)
+    {
+        mobStat = _stat;
+        hp = mobStat.hp;
+        armor = mobStat.armor;
+        attack = mobStat.attack;
+        attackSpeed = mobStat.attackSpeed;
+        attackRange = mobStat.attackRange;
+        speed = mobStat.speed;
+        job = mobStat.job;
+        canSkill = mobStat.canSkill;
+        canCallTeam = mobStat.canCallTeam;
+
+        team = gameObject.tag;
+        if (gameObject.tag == "Heroes")    // if player character
+        {
+            enemy = "Enemy";
+        }
+        else if (gameObject.tag == "Enemy")
+        {
+            enemy = "Heroes";
+        }
+        // attack per job
         if (job == 1)
         {
             throwItem = Resources.Load<GameObject>("Prefab/Item/Arrows");
@@ -95,33 +149,35 @@ public class _Data_Character : MonoBehaviour
     }
     void defaultMove()
     {
-        if(anim.GetBool("isMove") != true)
-            anim.SetBool("isMove",true);
-        transform.position = Vector3.MoveTowards(transform.position, goalPos, speed*Time.deltaTime);
-        
+        if (team == "Heroes")
+        {
+            if (anim.GetBool("isMove") != true)
+                anim.SetBool("isMove", true);
+            transform.position = Vector3.MoveTowards(transform.position, goalPos, speed * Time.deltaTime);
+        }
     }
 
     void SearchEnemy()
-    {
+    {  
         // turn to target
         characterTurn();
-
+     
         // search objects
         Collider[] cols = Physics.OverlapSphere(transform.position, 6f);
-        if(cols.Length > 0) 
+        if (cols.Length > 0)
         {
-            for (int i = 0; i < cols.Length; i++) 
+            for (int i = 0; i < cols.Length; i++)
             {
-                if (cols[i].tag == "Enemy") 
+                if (cols[i].tag == enemy)
                 {
-                    
-                    if(!enemyList.Contains(cols[i].gameObject))
+
+                    if (!enemyList.Contains(cols[i].gameObject))
                     {
                         enemyList.Enqueue(cols[i].gameObject);
-                    }       
+                    }
                 }
             }
-        }
+        }     
 
         // have no target
         if(targetEnemy == null)
@@ -135,19 +191,29 @@ public class _Data_Character : MonoBehaviour
         // if enemyAlive
         else if(targetEnemy.activeSelf != false)
         {
+            //Debug.Log(transform.name + " vs " + targetEnemy.name);
             AttackEnemy(targetEnemy);
         }
         else if(targetEnemy.activeSelf == false)
         {
             targetEnemy = null;
         }
+
+        // isBattle
+        if (targetEnemy == null)
+        {
+            isBattle = false;
+        }
+        else
+            isBattle = true;
     }
 
     void AttackEnemy(GameObject _enemy)
     {
-        // calculation enemy distance
+        
         if (!isSkill)
         {
+            // calculation enemy distance
             if (Vector3.Distance(transform.position, _enemy.transform.position) < attackRange)
             {
                 // attack enemy
@@ -162,8 +228,12 @@ public class _Data_Character : MonoBehaviour
                     attackColTime = 0;
 
                     // give demage
-                    if(job == 0)
-                        _enemy.GetComponent<_Data_Enemy>().TakeDemage(attack);          
+                    if (job == 0)
+                    {
+                        //if(team == "Heroes")
+                            _enemy.GetComponent<_Data_Character>().TakeDemage(attack);
+                       
+                    }
                 }
             }
             else
@@ -198,7 +268,7 @@ public class _Data_Character : MonoBehaviour
             {
                 for (int i = 0; i < cols.Length; i++)
                 {
-                    if (cols[i].tag == "Heroes")
+                    if (cols[i].tag == team)
                     {
                         cols[i].GetComponent<_Data_Character>().TakeHp(3);
                     }              
@@ -218,7 +288,7 @@ public class _Data_Character : MonoBehaviour
                 // motion
                 anim.SetTrigger("skill");
 
-                _Data_Enemy enemy = targetEnemy.GetComponent<_Data_Enemy>();           
+                _Data_Character enemy = targetEnemy.GetComponent<_Data_Character>();           
                 gameObject.GetComponent<Animator>().SetTrigger("skill"); // char skill motion               
                 effect = Resources.Load<GameObject>("Effect/LigthningState"); // skill effect
                 skill = Instantiate<GameObject>(effect); // create
@@ -242,13 +312,13 @@ public class _Data_Character : MonoBehaviour
             {
                 for (int i = 0; i < cols.Length; i++)
                 {        
-                    if (cols[i].tag == "Enemy" && cols[i].gameObject.activeSelf)
+                    if (cols[i].tag == enemy)
                     {
-                        cols[i].GetComponent<_Data_Enemy>().TakeDemage(10);
+                        cols[i].GetComponent<_Data_Character>().TakeDemage(10);
                     }
                 }
                 //_Data_Enemy enemy = targetEnemy.GetComponent<_Data_Enemy>();
-                //gameObject.GetComponent<Animator>().SetTrigger("skill"); // char skill motion               
+                //gameObject.GetComponent<Animator>().SetTrigger("skill"); // char skill motion
                 effect = Resources.Load<GameObject>("Effect/MagicCircleExplode"); // skill effect
                 skill = Instantiate<GameObject>(effect); // create
                 skill.transform.SetParent(transform, false);
@@ -260,13 +330,64 @@ public class _Data_Character : MonoBehaviour
         return false;
     }
 
+    public void bossSkill()
+    {
+        
+        anim.SetTrigger("skill");
+        effect = Resources.Load<GameObject>("Effect/FantasySun"); // skill effect
+        skill = Instantiate<GameObject>(effect); // create
+        skill.transform.SetParent(transform, false);
+        skill.transform.position = gameObject.transform.position;
+
+        Mob mob1 = new Mob();
+        mob1.name = "Mob01";
+        mob1.hp = 20;
+        mob1.armor = 1;
+        mob1.attack = 3;
+        mob1.attackSpeed = 0.7f;
+        mob1.attackRange = 1f;
+        mob1.speed = 1;
+        mob1.job = 0;
+
+        GameObject parent = GameObject.Find("Enemy");
+        Vector3 pos01 = transform.position;
+        Vector3 pos02 = transform.position;
+        pos01.x += 3;
+        pos02.x -= 3;
+
+        _Data_InstanceManager.instance.createMob(parent.transform, pos01, mob1);
+        _Data_InstanceManager.instance.createMob(parent.transform, pos02, mob1);
+            
+        
+    }
+
+    public void CallTeam()
+    {
+        // search objects
+        Collider[] cols = Physics.OverlapSphere(transform.position, 20f);
+        if (cols.Length > 0)
+        {
+            for (int i = 0; i < cols.Length; i++)
+            {
+                if (cols[i].tag == team)
+                {
+                    _Data_Character teamTmp = cols[i].gameObject.GetComponent<_Data_Character>();
+                    if(!teamTmp.isBattle)
+                    {
+                        teamTmp.targetEnemy = targetEnemy;
+                    }
+                    
+                }
+            }
+        }
+    }
     void characterTurn()
     {
         if(targetEnemy != null)
         {
             transform.LookAt(targetEnemy.transform);
         }
-        else
+        else if(team == "Heroes")
             transform.LookAt(goalPos);
     }
 
@@ -277,42 +398,65 @@ public class _Data_Character : MonoBehaviour
         if(demage > 0)
             hp -= demage;
 
-        if(hp <= 0)
+        if(hp <= 0)         // if character is dead
         {
             gameObject.SetActive(false);
             hpImage.gameObject.SetActive(false);
             hpMaxImage.gameObject.SetActive(false);
+
+            if (team == "Heroes")
+            {
+                if (skillBtn != null)
+                    skillBtn.disableBtn();
+                GameObject.Find("GameManager").GetComponent<_Data_GameManager>().discountPlayer();
+            }
+            else
+            {
+                GameObject.Find("GameManager").GetComponent<_Data_GameManager>().discountEnemy();
+            }
+        }
+
+        if (hp < mobStat.hp / 2)
+        {
+            if (team == "Enemy" && canSkill == true)
+            {
+                bossSkill();
+                canSkill = false;
+            }
+        }
+
+        if(team == "Enemy")
+        {
+            if (canCallTeam)
+                CallTeam();
         }
     }
 
     public void TakeHp(float _heal)
     {
+        float maxHp = 0f;
+        if (team == "Heroes") maxHp = playerStat.hp;
+        else if (team == "Enemy") maxHp = mobStat.hp;
+
         if (hp < 0) return;             // if dead
 
-        if ((hp + _heal) > stat.hp)     // if maxhp < heal
-            hp = stat.hp;
+        if ((hp + _heal) > maxHp)     // if maxhp < heal
+            hp = maxHp;
         else
             hp += _heal;
     }
 
     void HpPosition()
     {
+        float maxHp = 0f;
+        if (team == "Heroes") maxHp = playerStat.hp;
+        else if (team == "Enemy") maxHp = mobStat.hp;
+
         screenPos = Camera.main.WorldToScreenPoint(hpPos.transform.position);
         hpImage.transform.position = screenPos;
         hpMaxImage.transform.position = screenPos;
         if(hp<=0) hp = 0;
-        hpImage.fillAmount = hp / stat.hp;
+        hpImage.fillAmount = hp / maxHp;
     }
-
-    public void HpHeal(float hpheal)
-    {
-        if (hp < stat.hp)
-        {
-            hp += hpheal;
-        }
-        if (hp > stat.hp)
-        {
-            hp = stat.hp;
-        }
-    }
+   
 }

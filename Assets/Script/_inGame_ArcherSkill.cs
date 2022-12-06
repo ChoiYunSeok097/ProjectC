@@ -20,7 +20,7 @@ public class _inGame_ArcherSkill : StateMachineBehaviour
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         _Data_Character player = animator.gameObject.GetComponent<_Data_Character>();
-        ThrowWeapon(player.throwItem, player.targetEnemy, animator.gameObject.GetComponent<_Data_Character>());
+        _Data_InstanceManager.instance.ThrowWeapon(player.throwItem, player.targetEnemy, animator.gameObject.GetComponent<_Data_Character>());
     }
 
     // OnStateMove is called right after Animator.OnAnimatorMove()
@@ -34,11 +34,13 @@ public class _inGame_ArcherSkill : StateMachineBehaviour
     //{
     //    // Implement code that sets up animation IK (inverse kinematics)
     //}
-
+    /*
     void ThrowWeapon(GameObject _weapon, GameObject _enemy, _Data_Character _player)
     {
         GameObject weapon = GameObject.Instantiate<GameObject>(_weapon);
         _InGame_ThrowItem _throwItem = weapon.AddComponent<_InGame_ThrowItem>();
+        _throwItem.character = _player;
         _throwItem.setEnemy(_enemy, _player.transform.position, _player.attack*3);
     }
+    */
 }

@@ -621,9 +621,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 739009534432023777}
-  - component: {fileID: 6776868370933376746}
   - component: {fileID: 3437909551088004190}
-  - component: {fileID: 1590124485006994712}
   - component: {fileID: 7252314517361784167}
   - component: {fileID: 2924668794674804736}
   m_Layer: 0
@@ -672,26 +670,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
---- !u!114 &6776868370933376746
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 362398882524879929}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ac6ec0c4ebe3cfe41bfb1238066c53b3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  enemyManager: {fileID: 0}
-  CurrentHealth: 0
-  Attack: 0
-  Damage: 0
-  Guard: 0
-  time: 0
-  hpPos: {fileID: 541158277541735564}
-  Hp: {fileID: 5563015221610789537, guid: c055b7729e840694ca46b43c3bc574bf, type: 3}
 --- !u!95 &3437909551088004190
 Animator:
   serializedVersion: 3
@@ -711,28 +689,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!195 &1590124485006994712
-NavMeshAgent:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 362398882524879929}
-  m_Enabled: 1
-  m_AgentTypeID: 0
-  m_Radius: 0.5
-  m_Speed: 3.5
-  m_Acceleration: 8
-  avoidancePriority: 50
-  m_AngularSpeed: 120
-  m_StoppingDistance: 0
-  m_AutoTraverseOffMeshLink: 1
-  m_AutoBraking: 1
-  m_AutoRepath: 1
-  m_Height: 2
-  m_BaseOffset: 0
-  m_WalkableMask: 4294967295
-  m_ObstacleAvoidanceType: 4
 --- !u!136 &7252314517361784167
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -746,7 +702,7 @@ CapsuleCollider:
   m_Radius: 0.4
   m_Height: 2
   m_Direction: 1
-  m_Center: {x: 0, y: 0.6, z: 0}
+  m_Center: {x: 0, y: 1, z: 0}
 --- !u!54 &2924668794674804736
 Rigidbody:
   m_ObjectHideFlags: 0

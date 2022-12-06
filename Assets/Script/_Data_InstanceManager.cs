@@ -5,11 +5,13 @@ using UnityEngine.UI;
 
 public class _Data_InstanceManager :  _Data_SingleTon<_Data_InstanceManager>
 {
-    public GameObject player;
+    public GameObject player, throwObjects;
+    public List<GameObject> throwItems;
 
     public void instanceList() 
     {
         _Data_ResourseManager.instance.LoadResource();
+        throwItems = new List<GameObject>();
     }
 
     public Sprite createImage(string _name)
@@ -19,19 +21,45 @@ public class _Data_InstanceManager :  _Data_SingleTon<_Data_InstanceManager>
         return resource;
     }
 
+    // object pulling
+    public void ThrowWeapon(GameObject _weapon, GameObject _enemy, _Data_Character _player)
+    {
+        GameObject newItem; 
+
+        if (throwItems.Count == 0 || (newItem = throwItems.Find(o => o.transform.name.Equals(_weapon.transform.name + "(Clone)"))) == null)
+        {
+            GameObject weapon = GameObject.Instantiate<GameObject>(_weapon);
+            _InGame_ThrowItem _throwItem = weapon.AddComponent<_InGame_ThrowItem>();
+            _throwItem.character = _player;
+            _throwItem.setEnemy(_enemy, _player.transform.position, _player.attack);
+            weapon.transform.SetParent(throwObjects.transform);
+        }
+        else
+        {
+            newItem.SetActive(true);
+            newItem.transform.position = _player.transform.position;
+
+            _InGame_ThrowItem throwItem = newItem.GetComponent<_InGame_ThrowItem>();
+            throwItem.character = _player;
+            throwItem.setEnemy(_enemy, _player.transform.position, _player.attack);
+            throwItems.Remove(newItem);
+        }
+    }
+
     // create Monster
-    public GameObject createMob(Transform _parent, Transform _wavePos, Mob _mob)
+    public GameObject createMob(Transform _parent, Vector3 _wavePos, Mob _mob)
     {
         GameObject mob = null;
         GameObject resource = _Data_ResourseManager.instance.getResourceMonster(_mob.name);
 
         if(resource != null)
         {   
-            mob = GameObject.Instantiate<GameObject>(resource,_wavePos.position,Quaternion.identity);
+            mob = GameObject.Instantiate<GameObject>(resource,_wavePos,Quaternion.identity);
             mob.transform.rotation = Quaternion.Euler(0,180,0);
             mob.transform.SetParent(_parent);
             mob.tag = "Enemy";
-            _Data_Enemy enemy = mob.AddComponent<_Data_Enemy>();
+            //_Data_Enemy enemy = mob.AddComponent<_Data_Enemy>();
+            _Data_Character enemy = mob.AddComponent<_Data_Character>();
             enemy.setStat(_mob);
         }
 
@@ -40,10 +68,10 @@ public class _Data_InstanceManager :  _Data_SingleTon<_Data_InstanceManager>
 
     public void createWave(Transform MonsterParent, Transform [] _wavePos, Wave _wave)
     {
-        createMob(MonsterParent, _wavePos[0], _wave.mob1);
-        createMob(MonsterParent, _wavePos[1], _wave.mob2);
-        createMob(MonsterParent, _wavePos[2], _wave.mob3);
-        createMob(MonsterParent, _wavePos[3], _wave.mob4);
+        createMob(MonsterParent, _wavePos[0].position, _wave.mob1);
+        createMob(MonsterParent, _wavePos[1].position, _wave.mob2);
+        createMob(MonsterParent, _wavePos[2].position, _wave.mob3);
+        createMob(MonsterParent, _wavePos[3].position, _wave.mob4);
     }
 
     public void createWaves(Transform MonsterParent, List<Transform[]> _wavePosList, Wave [] _waves)

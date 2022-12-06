@@ -2565,8 +2565,9 @@ MonoBehaviour:
   image: {fileID: 127187558}
   button: {fileID: 127187557}
   coolTime: 10
-  isClicked: 0
   pauseBtn: 0
+  isClicked: 0
+  speedX2: 0
   pauseBg: {fileID: 0}
   character: {fileID: 0}
   gameManager: {fileID: 0}
@@ -3633,8 +3634,9 @@ MonoBehaviour:
   image: {fileID: 0}
   button: {fileID: 0}
   coolTime: 10
-  isClicked: 0
   pauseBtn: 0
+  isClicked: 0
+  speedX2: 0
   pauseBg: {fileID: 1465436429}
   character: {fileID: 0}
   gameManager: {fileID: 0}
@@ -12356,8 +12358,9 @@ MonoBehaviour:
   image: {fileID: 689714688}
   button: {fileID: 689714687}
   coolTime: 10
-  isClicked: 0
   pauseBtn: 0
+  isClicked: 0
+  speedX2: 0
   pauseBg: {fileID: 0}
   character: {fileID: 0}
   gameManager: {fileID: 0}
@@ -22782,8 +22785,9 @@ MonoBehaviour:
   image: {fileID: 1323581177}
   button: {fileID: 1323581176}
   coolTime: 10
-  isClicked: 0
   pauseBtn: 0
+  isClicked: 0
+  speedX2: 0
   pauseBg: {fileID: 0}
   character: {fileID: 0}
   gameManager: {fileID: 0}

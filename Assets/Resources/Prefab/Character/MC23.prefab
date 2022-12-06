@@ -14798,7 +14798,6 @@ GameObject:
   - component: {fileID: 8928888795424174822}
   - component: {fileID: 8928888795424174821}
   - component: {fileID: 8558836976251846880}
-  - component: {fileID: 126410655249235519}
   m_Layer: 0
   m_Name: MC23
   m_TagString: Heroes
@@ -14877,7 +14876,7 @@ CapsuleCollider:
   m_Radius: 0.4
   m_Height: 2
   m_Direction: 1
-  m_Center: {x: 0, y: 0.6, z: 0}
+  m_Center: {x: 0, y: 1, z: 0}
 --- !u!114 &8928888795424174821
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14915,28 +14914,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!195 &126410655249235519
-NavMeshAgent:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8928888795424174820}
-  m_Enabled: 1
-  m_AgentTypeID: 0
-  m_Radius: 0.5
-  m_Speed: 3.5
-  m_Acceleration: 8
-  avoidancePriority: 50
-  m_AngularSpeed: 120
-  m_StoppingDistance: 0
-  m_AutoTraverseOffMeshLink: 1
-  m_AutoBraking: 1
-  m_AutoRepath: 1
-  m_Height: 2
-  m_BaseOffset: 0
-  m_WalkableMask: 4294967295
-  m_ObstacleAvoidanceType: 4
 --- !u!1 &8928888795430921499
 GameObject:
   m_ObjectHideFlags: 0

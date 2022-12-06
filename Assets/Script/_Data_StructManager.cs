@@ -23,7 +23,7 @@ public struct Character
 
     public string Name { set; get; }
     public float star { set; get; }
-    public float job{ set; get; }     // 0: warrior, 1:majision, 2:achor, 3:healer 
+    public float job{ set; get; }           // 0: warrior, 1:majision, 2:achor, 3:healer 
     public bool weapon{ set; get; }
     public float Level{ set; get; }
     public float Exp{ set; get; }
@@ -46,8 +46,8 @@ public struct Wave
 public struct Mob
 {
     public string name;
-    public float hp,armor,attack,attackSpeed,attackRange,speed;
-
+    public float hp,armor,attack,attackSpeed,attackRange,speed,job;
+    public bool canSkill,canCallTeam;
 }
 
 

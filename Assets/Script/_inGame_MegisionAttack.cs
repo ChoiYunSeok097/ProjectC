@@ -45,6 +45,7 @@ public class _inGame_MegisionAttack : StateMachineBehaviour
     {
         GameObject weapon = GameObject.Instantiate<GameObject>(_weapon);
         _InGame_ThrowItem _throwItem = weapon.AddComponent<_InGame_ThrowItem>();
+        _throwItem.character = _player;
         _throwItem.setEnemy(_enemy, _player.transform.position, _player.attack);
     }
 }
