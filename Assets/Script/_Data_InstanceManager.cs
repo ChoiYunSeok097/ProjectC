@@ -96,8 +96,13 @@ public class _Data_InstanceManager :  _Data_SingleTon<_Data_InstanceManager>
             _Data_CharManager.instance.setScript(_name, Char);  // add script
             Char.transform.SetParent(_parent);
             Char.tag = "Heroes";
-            charList.Add(Char);
+            if(charList != null)
+            {
+                   charList.Add(Char);
+            }
+            
         }
+        
 
         return Char;
     }
