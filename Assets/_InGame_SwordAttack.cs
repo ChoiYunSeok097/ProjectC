@@ -2,14 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class _inGame_MegisionSkill : StateMachineBehaviour
+public class _InGame_SwordAttack : StateMachineBehaviour
 {
     public AudioClip sound;
     _Data_Character character;
+
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        animator.gameObject.GetComponent<_Data_Character>().isSkill = true;
         character = animator.gameObject.GetComponent<_Data_Character>();
         character.SetAudio(sound);
         character.Sound();
@@ -22,15 +22,15 @@ public class _inGame_MegisionSkill : StateMachineBehaviour
     //}
 
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
-    override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
-    {
-        animator.gameObject.GetComponent<_Data_Character>().isSkill = false;
-    }
+    //override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+    //{
+    //    
+    //}
 
     // OnStateMove is called right after Animator.OnAnimatorMove()
     //override public void OnStateMove(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     //{
-    //    // Implement code that processes and affects root motion
+        //animator.gameObject.GetComponent<AudioSource>().clip = null;
     //}
 
     // OnStateIK is called right after Animator.OnAnimatorIK()

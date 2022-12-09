@@ -4,13 +4,16 @@ using UnityEngine;
 
 public class _InGame_SwordSkill : StateMachineBehaviour
 {
-    //public _Data_Character player = animator.gameObject;
-
+    public AudioClip sound;
+    _Data_Character character;
 
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        animator.gameObject.GetComponent<_Data_Character>().isSkill = true;    
+        animator.gameObject.GetComponent<_Data_Character>().isSkill = true;
+        character = animator.gameObject.GetComponent<_Data_Character>();
+        character.SetAudio(sound);
+        character.Sound();
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks

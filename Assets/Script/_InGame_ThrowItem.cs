@@ -5,14 +5,16 @@ using UnityEngine;
 public class _InGame_ThrowItem : MonoBehaviour
 {
     GameObject enemy;
+    Collider collider;
+
     public _Data_Character character;
     Vector3 enemyPos;
     public float damage = 0;
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
-        
+        //collider = gameObject.GetComponent<Collider>();
     }
 
     // Update is called once per frame
@@ -36,6 +38,8 @@ public class _InGame_ThrowItem : MonoBehaviour
             transform.LookAt(enemyPos);         // turn to enemy
             transform.position = Vector3.MoveTowards(transform.position, enemyPos, 30f * Time.deltaTime);
         }
+
+        //HitScan();
     }
 
     public void setEnemy(GameObject _enemy, Vector3 _position, float _damage)
@@ -57,6 +61,19 @@ public class _InGame_ThrowItem : MonoBehaviour
             }
             else
                 limitDestroy();
+        }
+    }
+
+    void HitScan()
+    {
+        Collider[] cols = Physics.OverlapSphere(transform.position, 3f);
+        if (cols.Length > 0)
+        {
+            for (int i = 0; i < cols.Length; i++)
+            {
+                if (collider.bounds.Intersects(cols[i].bounds) && cols[i] != collider && cols[i].gameObject.tag == character.enemy)
+                    Debug.Log("Ãæµ¹");
+            }
         }
     }
 

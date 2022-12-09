@@ -4,11 +4,17 @@ using UnityEngine;
 
 public class _inGame_ArcherSkill : StateMachineBehaviour
 {
-    // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
-    //override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
-    //{
+    public AudioClip sound;
+    _Data_Character character;
 
-    //}
+    // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
+    override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+    {
+        animator.gameObject.GetComponent<_Data_Character>().isSkill = true;
+        character = animator.gameObject.GetComponent<_Data_Character>();
+        character.SetAudio(sound);
+        character.Sound();
+    }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
     //override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
@@ -21,6 +27,7 @@ public class _inGame_ArcherSkill : StateMachineBehaviour
     {
         _Data_Character player = animator.gameObject.GetComponent<_Data_Character>();
         _Data_InstanceManager.instance.ThrowWeapon(player.throwItem, player.targetEnemy, animator.gameObject.GetComponent<_Data_Character>());
+        animator.gameObject.GetComponent<_Data_Character>().isSkill = false;
     }
 
     // OnStateMove is called right after Animator.OnAnimatorMove()

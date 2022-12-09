@@ -6,7 +6,7 @@ public class _Data_CharManager : _Data_SingleTon<_Data_CharManager>
 {
     
     // return script
-    public void setScript(string _name, GameObject Char)
+    public void setScript(string _name, GameObject _char)
     {
         // character's stat is loaded from file
         List<string> str = _Data_DataInput.instance.loadFile("/userCharacter.csv");
@@ -19,7 +19,7 @@ public class _Data_CharManager : _Data_SingleTon<_Data_CharManager>
             if(_name == contents[0])
             {
                 Character character = new Character();
-                _Data_Character characterScript = Char.AddComponent<_Data_Character>();
+                _Data_Character characterScript = _char.AddComponent<_Data_Character>();
 
                 // input character state
                 character.hp = float.Parse(contents[1]);

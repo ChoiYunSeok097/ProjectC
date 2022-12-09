@@ -20,6 +20,8 @@ public class _Data_Character : MonoBehaviour
     public GameObject throwItem;
 
     public _InGame_SkillCoolTime skillBtn;
+
+    public AudioSource audioSource;
     
 
     Animator anim;
@@ -62,7 +64,11 @@ public class _Data_Character : MonoBehaviour
         hpMaxImage.transform.SetParent(canvas.transform);
         hpImage.transform.SetParent(canvas.transform);
         hpPos = transform.Find("HpPos");
-        HpPosition();    
+        HpPosition();
+
+        // audio
+        audioSource = gameObject.AddComponent<AudioSource>();
+
     }
 
     void Start()
@@ -459,4 +465,13 @@ public class _Data_Character : MonoBehaviour
         hpImage.fillAmount = hp / maxHp;
     }
    
+    public void SetAudio(AudioClip _clip)
+    {
+        audioSource.clip = _clip;
+    }
+    
+    public void Sound()
+    {
+        audioSource.Play();
+    }
 }
