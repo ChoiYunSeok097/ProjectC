@@ -21,6 +21,9 @@ EditorBuildSettings:
     path: Assets/Scenes/HeroMenu.unity
     guid: 0e1e6edfdd2d6d8489301e6f7f93ecf4
   - enabled: 1
+    path: Assets/Scenes/HeroManager.unity
+    guid: 503771937991c914aa3bf034c5e0f895
+  - enabled: 1
     path: Assets/Scenes/InGame_UI 1.unity
     guid: 2aa331345f666a3478f6c006cbbc440f
   - enabled: 1
