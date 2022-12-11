@@ -28,6 +28,8 @@ public class _Data_GameManager : MonoBehaviour
 
     void Start()
     {
+        Time.timeScale = 1;
+
         // call characters and waves
         charList = new List<GameObject>();
         wavePosList = new List<Transform[]>();

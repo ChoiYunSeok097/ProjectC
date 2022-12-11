@@ -1,6 +1,6 @@
 name,hp,armor,attack,attackSpeed,attackRange,speed,job,star,weapon1,level,exp,weapon2
-MC01,17,0,3,1,1,3,0,0,False,1,0,False,
-MC02,17,0,3,1,1,3,0,0,False,1,0,False,
-MC03,7,0,3,1.5,4,3,2,0,False,1,0,False,
-MC04,7,0,3,1,1,3,0,5,FALSE,1,0,FALSE
+MC01,13,0,2,1,1,3,0,0,False,1,0,False,
+MC02,23,0,7,1,1,3,0,0,True,1,0,True,
+MC03,9,0,4,1.5,4,3,2,0,True,1,0,True,
+MC04,7,0,3,1,1,3,0,0,False,1,0,False,
 MC13,7,0,3,1,5,3,1,0,False,1,0,False,

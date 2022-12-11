@@ -43,6 +43,7 @@ public class ManagerWindow : MonoBehaviour, IPointerDownHandler, IPointerUpHandl
                 LevelBar.GetComponent<Image>().fillAmount = exp;
             }
         }
+        
     }
     public void Weapon1setScript(string _name)
     {
@@ -84,12 +85,14 @@ public class ManagerWindow : MonoBehaviour, IPointerDownHandler, IPointerUpHandl
             }
         }
     }
-    void loadCharacter(string _name)
+    public void loadCharacter(string _name)
     {
         List<string> list = _Data_DataInput.instance.loadFile(_name);
+        list.RemoveAt(0);
         for (int i = 0; i < list.Count; i++)
         {
-            characterImg[i].sprite = Resources.Load<Sprite>("Image/" + list[i]);
+            string [] contents = list[i].Split(',');
+            characterImg[i].sprite = Resources.Load<Sprite>("Image/" + contents[0]);
         }
         for (int i = 0; i < characterImg.Length; i++)
         {
@@ -138,7 +141,7 @@ public class ManagerWindow : MonoBehaviour, IPointerDownHandler, IPointerUpHandl
     string sweapon2;
     void Awake()
     {
-        loadCharacter("Party.csv");
+        loadCharacter("userCharacter.csv");
         sprite = GameObject.Find("SoundObject").GetComponent<SoundObject>();
         herolevel = HeroLevel.text;
         gold = GameObject.Find("Cash").GetComponent<Text>().text;
@@ -162,6 +165,7 @@ public class ManagerWindow : MonoBehaviour, IPointerDownHandler, IPointerUpHandl
             Debug.Log(stat.weapon1);
             Debug.Log(stat.weapon2);
         }
+
     }
     public void StatusOpen()
     {
@@ -188,6 +192,8 @@ public class ManagerWindow : MonoBehaviour, IPointerDownHandler, IPointerUpHandl
             StatusWindow.SetActive(false);
             HeroWindow.SetActive(false);
             WeaponWindow.SetActive(true);
+
+            WeaponWindow.GetComponent<_UI_WeaponWindow>().loadSlot();
         }
     }
     public void OnPointerDown(PointerEventData _eventData)
@@ -218,6 +224,7 @@ public class ManagerWindow : MonoBehaviour, IPointerDownHandler, IPointerUpHandl
         {
             if(ui.GetComponent<Image>().sprite != null)
             {
+                
                 uiname = ui.name;
                 selectedSlot.GetComponent<Image>().sprite = ui.GetComponent<Image>().sprite;
                 selectedSlot.SetActive(true);
@@ -237,21 +244,29 @@ public class ManagerWindow : MonoBehaviour, IPointerDownHandler, IPointerUpHandl
             }
             if (ui.name == "Weapon1" && uiname == "WeaponSlot" && WeaponSlot1.sprite.name == "SelectedWeapon1")
             {
-                ui.GetComponent<Image>().sprite = selectedSlot.GetComponent<Image>().sprite;
-                Weapon1setScript(WeaponSlot1.sprite.name);
-                stat.weapon1 = true;
-                Weapon1Update();
+
+                if (selectedSlot.GetComponent<Image>().sprite.name == CharacterSlot.GetComponent<Image>().sprite.name + "-1")
+                {
+                    ui.GetComponent<Image>().sprite = selectedSlot.GetComponent<Image>().sprite;
+                    Weapon1setScript(WeaponSlot1.sprite.name);
+                    stat.weapon1 = true;
+                    Weapon1Update();
+                }
             }
             if (ui.name == "Weapon2" && uiname == "WeaponSlot" && WeaponSlot2.sprite.name == "SelectedWeapon2")
             {
-                ui.GetComponent<Image>().sprite = selectedSlot.GetComponent<Image>().sprite;
-                Weapon2setScript(WeaponSlot2.sprite.name);
-                stat.weapon2 = true;
-                Weapon2Update();
+                if (selectedSlot.GetComponent<Image>().sprite.name == CharacterSlot.GetComponent<Image>().sprite.name + "-2")
+                {
+                    ui.GetComponent<Image>().sprite = selectedSlot.GetComponent<Image>().sprite;
+                    Weapon2setScript(WeaponSlot2.sprite.name);
+                    stat.weapon2 = true;
+                    Weapon2Update();
+                }
             }
-            StatusOpen();
+            //StatusOpen();
             StatUpdate();
             selectedSlot.SetActive(false);
+            WeaponWindow.GetComponent<_UI_WeaponWindow>().loadSlot();
         }
     }
     public void OnDrag(PointerEventData _eventData)
@@ -310,6 +325,7 @@ public class ManagerWindow : MonoBehaviour, IPointerDownHandler, IPointerUpHandl
             stat.attack += Weapon1stat.WeaponAttack;
             stat.armor += Weapon1stat.WeaponArmor;
             StatText();
+            
         }
         else if ((Weapon1stat.WeaponName == WeaponSlot1.sprite.name) && (CharacterSlot.sprite.name != Weapon1stat.CharName))
         {
@@ -324,6 +340,7 @@ public class ManagerWindow : MonoBehaviour, IPointerDownHandler, IPointerUpHandl
             stat.attack += Weapon2stat.WeaponAttack;
             stat.armor += Weapon2stat.WeaponArmor;
             StatText();
+            
         }
         else if ((Weapon2stat.WeaponName == WeaponSlot2.sprite.name) && (CharacterSlot.sprite.name != Weapon2stat.CharName))
         {
@@ -492,6 +509,7 @@ public class ManagerWindow : MonoBehaviour, IPointerDownHandler, IPointerUpHandl
             DefStat.text = "방어력 : " + stat.armor.ToString();
         }
         SaveButton();
+        WeaponWindow.GetComponent<_UI_WeaponWindow>().loadSlot();
     }
     public void Weapon2Close()
     {
@@ -509,5 +527,8 @@ public class ManagerWindow : MonoBehaviour, IPointerDownHandler, IPointerUpHandl
             DefStat.text = "방어력 : " + stat.armor.ToString();
         }
         SaveButton();
+        WeaponWindow.GetComponent<_UI_WeaponWindow>().loadSlot();
     }
+
+    
 }
