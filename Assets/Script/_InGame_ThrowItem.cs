@@ -5,7 +5,7 @@ using UnityEngine;
 public class _InGame_ThrowItem : MonoBehaviour
 {
     GameObject enemy;
-    Collider collider;
+    
 
     public _Data_Character character;
     Vector3 enemyPos;
@@ -67,6 +67,7 @@ public class _InGame_ThrowItem : MonoBehaviour
     void HitScan()
     {
         Collider[] cols = Physics.OverlapSphere(transform.position, 3f);
+        Collider collider = new Collider();
         if (cols.Length > 0)
         {
             for (int i = 0; i < cols.Length; i++)

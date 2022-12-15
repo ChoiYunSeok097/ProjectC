@@ -16,8 +16,7 @@ public class _Data_GameManager : MonoBehaviour
     public Transform[] wavePos3;
     public Transform bossPos;
     List<Transform[]> wavePosList;
-
-    public _InGame_Camera camera;
+    public new _InGame_Camera camera;
 
     public _InGame_SkillCoolTime[] skillButton;      //SkillButton
 
@@ -58,6 +57,8 @@ public class _Data_GameManager : MonoBehaviour
 
         randomSkill(charList);
         //Debug.Log(nextCharSkill.transform.name);
+
+        //camera = Camera.main.GetComponent<_InGame_Camera>();
     }
 
     // Update is called once per frame
@@ -72,14 +73,18 @@ public class _Data_GameManager : MonoBehaviour
     {
         alivePlayers--;
         if (alivePlayers == 0)
-            uiWin.SetActive(true);
+        {
+            uiLose.SetActive(true);
+        }
     }
 
     public void discountEnemy()
     {
         aliveEnemy--;
         if (aliveEnemy == 0)
-            uiLose.SetActive(true);
+        {
+            uiWin.SetActive(true);
+        }
     }
 
     void randomSkill(List<GameObject> _charList)

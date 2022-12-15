@@ -23,7 +23,8 @@ public class _Data_StageManager : MonoBehaviour
     }
     public void InGameStage()
     {
-        SceneManager.LoadScene("InGame_Battle");
+        //SceneManager.LoadScene("InGame_Battle");
+        SceneManager.LoadScene("New Battle");
     }
     public void Backspace()
     {
@@ -61,7 +62,7 @@ public class _Data_StageManager : MonoBehaviour
         }
 
         // go to InGame
-        SceneManager.LoadScene("InGame_Battle");
+        InGameStage();
     }
 
     public void Stage_2()

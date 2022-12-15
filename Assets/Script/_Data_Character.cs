@@ -56,7 +56,7 @@ public class _Data_Character : MonoBehaviour
         isSkill = false;
 
         // HP setting
-        var canvas = GameObject.Find("Canvas");
+        var canvas = GameObject.Find("Canvas").transform.GetChild(0);
         Hp = Resources.Load<Image>("UI_Ingame/"+"Hp");
         HpMax = Resources.Load<Image>("UI_Ingame/"+"HpMax");
         hpMaxImage = Instantiate<Image>(HpMax);

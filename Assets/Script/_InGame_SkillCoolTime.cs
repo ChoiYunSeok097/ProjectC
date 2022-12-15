@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Audio;
 
 public class _InGame_SkillCoolTime : MonoBehaviour
 {
@@ -11,21 +12,25 @@ public class _InGame_SkillCoolTime : MonoBehaviour
     public Button button;               //스킬 버튼
     public float coolTime = 10.0f;      //쿨타임 시간
     public bool pauseBtn = false;       //pause
+    public bool soundBtn = false;
+
     public bool isClicked = false;      //버튼이 클릭 되었는가
     public bool speedX2 = false;
+
     bool isActive = true;
     float leftTime = 10.0f;             //남은 시간
     float speed = 5.0f;                 //채우는 속도
     float skillCost = 3.0f;
     
     public GameObject pauseBg;
+    public GameObject soundBg;
     public _Data_Character character;
     public _Data_GameManager gameManager;
 
-    void Awake() 
-    {
-        
-    }
+    public AudioMixer audioMixer;
+    public AudioMixer masterMixer;
+    public Slider MasterSlider;
+    public Slider audioSlider;
 
     // Update is called once per frame
     void Update () 
@@ -78,13 +83,29 @@ public class _InGame_SkillCoolTime : MonoBehaviour
         {
             Time.timeScale = 1;
             pauseBtn = false;
-            pauseBg.gameObject.SetActive(false);
+            pauseBg.gameObject.SetActive(false);         
         }
         else 
         {
             Time.timeScale = 0;
             pauseBtn = true;
             pauseBg.gameObject.SetActive(true);
+        }
+    }
+
+    public void SoundBtn()
+    {
+        if (soundBtn)
+        {
+            Time.timeScale = 1;
+            soundBtn = false;
+            soundBg.gameObject.SetActive(false);
+        }
+        else
+        {
+            Time.timeScale = 0;
+            soundBtn = true;
+            soundBg.gameObject.SetActive(true); 
         }
     }
 
@@ -120,4 +141,15 @@ public class _InGame_SkillCoolTime : MonoBehaviour
             }
         }
     }
+
+    public void MasterSoundSet()
+    {
+        float sound = MasterSlider.value;
+
+        if (sound == -40f) masterMixer.SetFloat("Master", -80);
+        else masterMixer.SetFloat("Master", sound);
+
+    }
+
+
 }
