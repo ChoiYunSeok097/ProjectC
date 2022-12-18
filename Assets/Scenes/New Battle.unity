@@ -2686,7 +2686,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1767183b89bd54c4f883b857ad15a798, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  text: {fileID: 1196623326}
+  text: {fileID: 0}
 --- !u!114 &374614910
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2733,6 +2733,7 @@ MonoBehaviour:
   nextCharSkill: {fileID: 0}
   nextSkillIcon: {fileID: 0}
   user: {fileID: 374614906}
+  text: {fileID: 1196623326}
   alivePlayers: 0
   aliveEnemy: 0
 --- !u!4 &374614911
@@ -6980,7 +6981,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0, g: 0.19983773, b: 0.9811321, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1

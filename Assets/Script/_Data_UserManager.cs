@@ -40,8 +40,6 @@ public class _Data_UserManager : MonoBehaviour
                 foreach (string one in contents)
                 {
                     sw.WriteLine(one);
-                    print(one);
-                    print(contents[1]);
                 }
                 sw.Close();
             }
@@ -56,16 +54,13 @@ public class _Data_UserManager : MonoBehaviour
         gold = contents[1].Split(',')[2];
 
         
-        gold += _gold;
-        print(gold);
-        contents[1] = name + ',' + level + ',' + gold;
+        int newGold = _gold + int.Parse(gold);
+        contents[1] = name + ',' + level + ',' + newGold;
         using (StreamWriter sw = new StreamWriter(Application.dataPath + "/" + "userData.csv"))
         {
             foreach (string one in contents)
             {
                 sw.WriteLine(one);
-                print(one);
-                print(contents[1]);
             }
             sw.Close();
         }

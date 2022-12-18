@@ -72,6 +72,6 @@ public class _UI_WeaponSlot : MonoBehaviour
         {
             weaponImage.color = Color.white;
         }
-        Debug.Log("ddd");
+        
     }
 }

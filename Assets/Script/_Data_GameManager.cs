@@ -23,6 +23,9 @@ public class _Data_GameManager : MonoBehaviour
     public _Data_Character nextCharSkill;
     public Sprite nextSkillIcon;
 
+    public _Data_UserManager user;
+    public Text text;
+
     public int alivePlayers, aliveEnemy;
 
     void Start()
@@ -74,6 +77,7 @@ public class _Data_GameManager : MonoBehaviour
         alivePlayers--;
         if (alivePlayers == 0)
         {
+            Time.timeScale = 0;
             uiLose.SetActive(true);
         }
     }
@@ -83,7 +87,10 @@ public class _Data_GameManager : MonoBehaviour
         aliveEnemy--;
         if (aliveEnemy == 0)
         {
+            Time.timeScale = 0;
             uiWin.SetActive(true);
+            user.addUserdata(_Data_StageManager.gold);
+            text.text = _Data_StageManager.gold.ToString();
         }
     }
 
