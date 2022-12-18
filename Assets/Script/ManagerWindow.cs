@@ -8,6 +8,8 @@ using UnityEngine.SceneManagement;
 
 public class ManagerWindow : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IDragHandler
 {
+    public _Data_UserManager user;
+
     Character stat;
     Weapon Weapon1stat;
     Weapon Weapon2stat;
@@ -307,6 +309,12 @@ public class ManagerWindow : MonoBehaviour, IPointerDownHandler, IPointerUpHandl
         {
             Debug.Log("돈이 부족합니다");
         }
+
+        if(user != null)
+        {
+            user.setUserdata();
+        }
+
     }
     void StatUpdate()
     {

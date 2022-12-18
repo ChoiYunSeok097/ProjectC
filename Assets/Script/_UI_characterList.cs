@@ -35,15 +35,7 @@ public class _UI_characterList : MonoBehaviour, IPointerDownHandler
     {
         List<string> list = _Data_DataInput.instance.loadFile(fileName);
         list.RemoveAt(0);
-        /*
-        for (int i = 0; i < characterImg.Length; i++)
-        {
-            if (i >= list.Count)
-                break;
-            characterImg[i].sprite = Resources.Load<Sprite>("Image/" + list[i]);
-            characterText[i].text = list[i];
-        }
-        */
+    
         for (int i = 0; i < list.Count; i++)
         {
             string[] contents = list[i].Split(',');
@@ -61,4 +53,6 @@ public class _UI_characterList : MonoBehaviour, IPointerDownHandler
             SceneManager.LoadScene("HeroManager");
         }
     }
+
+
 }

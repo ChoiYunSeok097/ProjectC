@@ -8,11 +8,11 @@ public class _Data_DataInput : _Data_SingleTon<_Data_DataInput>
     string path = Application.dataPath;
 
 
-    public void saveFile(string _name, string [] _characters)
+    public void saveFile(string _name, string [] _contents)
     {
         using(StreamWriter sw = new StreamWriter(path+"/"+_name))
         {
-            foreach(string one in _characters)
+            foreach(string one in _contents)
             {
                 sw.WriteLine(one);
             }

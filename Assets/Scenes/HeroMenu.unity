@@ -423,7 +423,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 100,000
+  m_Text: 0
 --- !u!222 &115603423
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -878,7 +878,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 10,000
+  m_Text: 0
 --- !u!222 &364283707
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3233,8 +3233,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1606698417}
-  - component: {fileID: 1606698416}
   - component: {fileID: 1606698418}
+  - component: {fileID: 1606698416}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -3251,9 +3251,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1606698415}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a0ef453f87630fb439e710025c7305de, type: 3}
+  m_Script: {fileID: 11500000, guid: bc81264dd2996d94a856ea2206131df7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  goldText: {fileID: 115603422}
 --- !u!4 &1606698417
 Transform:
   m_ObjectHideFlags: 0

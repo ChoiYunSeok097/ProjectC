@@ -2653,6 +2653,7 @@ GameObject:
   - component: {fileID: 374614911}
   - component: {fileID: 374614910}
   - component: {fileID: 374614909}
+  - component: {fileID: 374614906}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -2660,6 +2661,19 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &374614906
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 374614905}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc81264dd2996d94a856ea2206131df7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  goldText: {fileID: 0}
 --- !u!114 &374614909
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2672,6 +2686,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1767183b89bd54c4f883b857ad15a798, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  text: {fileID: 1196623326}
 --- !u!114 &374614910
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2717,6 +2732,7 @@ MonoBehaviour:
   - {fileID: 1352225361}
   nextCharSkill: {fileID: 0}
   nextSkillIcon: {fileID: 0}
+  user: {fileID: 374614906}
   alivePlayers: 0
   aliveEnemy: 0
 --- !u!4 &374614911
@@ -6036,8 +6052,8 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 1422243731}
   - {fileID: 1338253681}
+  - {fileID: 1422243731}
   m_Father: {fileID: 1434579888}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -7964,7 +7980,7 @@ RectTransform:
   - {fileID: 1130979404}
   - {fileID: 2003416883}
   m_Father: {fileID: 1012031889}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -8707,7 +8723,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1012031889}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -10188,14 +10204,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.013207495, g: 0.32765624, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
+  m_Sprite: {fileID: 21300000, guid: 2ca37eaea0b052140860254afcd90ea0, type: 3}
   m_Type: 3
   m_PreserveAspect: 0
   m_FillCenter: 1
