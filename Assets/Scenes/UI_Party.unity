@@ -5974,7 +5974,11 @@ MonoBehaviour:
   - {fileID: 346338546}
   - {fileID: 1017563639}
   parent: {fileID: 1102722753}
-  PartySlot: []
+  PartySlot:
+  - {fileID: 958831029}
+  - {fileID: 1732035733}
+  - {fileID: 1952849598}
+  - {fileID: 910696399}
 --- !u!114 &2112341608
 MonoBehaviour:
   m_ObjectHideFlags: 0
